@@ -1,4 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Re-attach event listeners for social links in footer
+    const socialLinks = document.querySelectorAll('.footer .social-links a');
+    socialLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            console.log('Social link clicked:', this.href);
+            // Do not prevent default as target="_blank" should handle opening in new tab
+        });
+    });
     // Product filtering functionality
     const filtroButtons = document.querySelectorAll('.filtro-btn');
     const productCards = document.querySelectorAll('.producto-card');

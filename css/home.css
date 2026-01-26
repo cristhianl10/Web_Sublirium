@@ -84,6 +84,12 @@
     margin-bottom: 0.5rem;
 }
 
+.product-floating-image {
+    width: 80px; /* Adjust as needed */
+    height: 80px; /* Adjust as needed */
+    object-fit: contain;
+}
+
 .product-card span {
     font-weight: 600;
     font-size: 1rem;

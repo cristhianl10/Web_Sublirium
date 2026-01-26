@@ -39,15 +39,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+            const hash = this.getAttribute('href');
+            // Only prevent default and smooth scroll if it's a hash link on the current page
+            if (hash.startsWith('#') && (this.pathname === window.location.pathname || this.pathname === '/')) {
+                e.preventDefault();
+                const target = document.querySelector(hash);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             }
         });
     });
