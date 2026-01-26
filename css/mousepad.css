@@ -1,0 +1,139 @@
+/* Estilos específicos para mousepad */
+.mousepad-hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Efecto de superficie */
+.surface-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.surface-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.1) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.1) 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    opacity: 0.3;
+}
+
+/* Dimensiones del mousepad */
+.dimensions-display {
+    background: var(--color-light-gray);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.dimensions-display .size {
+    font-size: 2rem;
+    font-weight: 700;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.dimensions-display .label {
+    font-size: 0.9rem;
+    color: var(--color-gray);
+}
+
+/* Efecto de tracking */
+.tracking-effect {
+    position: relative;
+}
+
+.tracking-effect::after {
+    content: '🖱️';
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    font-size: 1.5rem;
+    animation: mouseMove 4s ease-in-out infinite;
+}
+
+@keyframes mouseMove {
+    0%, 100% { 
+        top: 20%; 
+        left: 10%; 
+    }
+    25% { 
+        top: 20%; 
+        left: 80%; 
+    }
+    50% { 
+        top: 70%; 
+        left: 80%; 
+    }
+    75% { 
+        top: 70%; 
+        left: 10%; 
+    }
+}
+
+/* Gaming vs Office styles */
+.uso.gaming {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    color: var(--color-white);
+}
+
+.uso.office {
+    background: linear-gradient(135deg, #74b9ff, #0984e3);
+    color: var(--color-white);
+}
+
+/* Precision indicator */
+.precision-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    padding: 1rem;
+    background: var(--color-light-gray);
+    border-radius: var(--border-radius);
+}
+
+.precision-dots {
+    display: flex;
+    gap: 2px;
+}
+
+.precision-dot {
+    width: 4px;
+    height: 4px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    animation: precisionPulse 1s ease-in-out infinite;
+}
+
+.precision-dot:nth-child(2) { animation-delay: 0.2s; }
+.precision-dot:nth-child(3) { animation-delay: 0.4s; }
+.precision-dot:nth-child(4) { animation-delay: 0.6s; }
+.precision-dot:nth-child(5) { animation-delay: 0.8s; }
+
+@keyframes precisionPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+/* Responsive específico */
+@media (max-width: 768px) {
+    .surface-effect::before {
+        background-size: 15px 15px;
+    }
+    
+    .tracking-effect::after {
+        font-size: 1.2rem;
+    }
+}

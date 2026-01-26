@@ -1,0 +1,200 @@
+/* Estilos específicos para bolsos */
+.bolsos-hero {
+    background: linear-gradient(135deg, #8e44ad 0%, #3498db 100%);
+}
+
+/* Efecto de tirantes */
+.straps-effect {
+    position: relative;
+}
+
+.straps-effect::before,
+.straps-effect::after {
+    content: '';
+    position: absolute;
+    top: 10%;
+    width: 8px;
+    height: 80%;
+    background: linear-gradient(to bottom, #34495e, #2c3e50);
+    border-radius: 4px;
+}
+
+.straps-effect::before {
+    left: 20%;
+}
+
+.straps-effect::after {
+    right: 20%;
+}
+
+/* Compartimentos */
+.compartments-display {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.compartment {
+    background: var(--color-light-gray);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    text-align: center;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.compartment:hover {
+    background: var(--gradient-primary);
+    color: var(--color-white);
+    transform: scale(1.05);
+}
+
+.compartment i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.compartment.main::before { content: '📦'; }
+.compartment.side::before { content: '👝'; }
+.compartment.front::before { content: '📱'; }
+
+/* Capacidad visual */
+.capacity-visual {
+    background: var(--color-light-gray);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin: 1rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.capacity-fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70%;
+    background: var(--gradient-primary);
+    opacity: 0.2;
+    animation: fillBag 3s ease-in-out infinite;
+}
+
+@keyframes fillBag {
+    0%, 100% { height: 20%; }
+    50% { height: 70%; }
+}
+
+.capacity-text {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Usos con colores específicos */
+.usos-grid .uso.daily {
+    background: linear-gradient(135deg, #74b9ff, #0984e3);
+    color: var(--color-white);
+}
+
+.usos-grid .uso.school {
+    background: linear-gradient(135deg, #00b894, #00a085);
+    color: var(--color-white);
+}
+
+.usos-grid .uso.sport {
+    background: linear-gradient(135deg, #e17055, #d63031);
+    color: var(--color-white);
+}
+
+.usos-grid .uso.travel {
+    background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+    color: var(--color-white);
+}
+
+.usos-grid .uso.promo {
+    background: linear-gradient(135deg, #fd79a8, #e84393);
+    color: var(--color-white);
+}
+
+.usos-grid .uso.corporate {
+    background: linear-gradient(135deg, #636e72, #2d3436);
+    color: var(--color-white);
+}
+
+/* Resistencia indicator */
+.resistance-indicator {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--color-light-gray);
+    border-radius: var(--border-radius);
+    margin: 1rem 0;
+}
+
+.resistance-icon {
+    font-size: 2rem;
+    color: var(--color-gray);
+}
+
+.resistance-bars {
+    display: flex;
+    gap: 2px;
+    flex: 1;
+}
+
+.resistance-bar {
+    height: 12px;
+    background: var(--color-gray);
+    border-radius: 6px;
+    flex: 1;
+    transition: var(--transition);
+}
+
+.resistance-bar.active {
+    background: var(--gradient-primary);
+}
+
+/* Efecto de carga */
+.loading-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.loading-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.3), 
+        transparent);
+    animation: loadingShine 2s infinite;
+}
+
+@keyframes loadingShine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Responsive específico */
+@media (max-width: 768px) {
+    .compartments-display {
+        grid-template-columns: 1fr;
+    }
+    
+    .straps-effect::before,
+    .straps-effect::after {
+        width: 6px;
+    }
+    
+    .resistance-indicator {
+        flex-direction: column;
+        text-align: center;
+    }
+}

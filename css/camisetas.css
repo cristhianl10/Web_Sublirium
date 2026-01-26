@@ -1,0 +1,96 @@
+/* Estilos específicos para camisetas */
+.camisetas-hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Efecto de tela */
+.fabric-texture {
+    position: relative;
+    overflow: hidden;
+}
+
+.fabric-texture::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0);
+    background-size: 20px 20px;
+    opacity: 0.5;
+}
+
+/* Tallas con diferentes colores */
+.tallas-grid .talla {
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.tallas-grid .talla:hover {
+    background: var(--gradient-primary);
+    color: var(--color-white);
+    transform: scale(1.1);
+}
+
+.tallas-grid .talla.selected {
+    background: var(--gradient-primary);
+    color: var(--color-white);
+}
+
+/* Efecto de sublimación */
+.sublimation-effect {
+    position: relative;
+}
+
+.sublimation-effect::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.4), 
+        transparent);
+    animation: sublimate 3s infinite;
+}
+
+@keyframes sublimate {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Áreas de impresión */
+.area-impresion {
+    position: relative;
+    border: 2px dashed var(--gradient-primary);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin: 0.5rem 0;
+    background: rgba(102, 126, 234, 0.05);
+}
+
+.area-impresion::before {
+    content: attr(data-area);
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    background: var(--color-white);
+    padding: 0 0.5rem;
+    font-size: 0.8rem;
+    color: var(--color-gray);
+}
+
+/* Responsive específico */
+@media (max-width: 768px) {
+    .fabric-texture::before {
+        background-size: 15px 15px;
+    }
+    
+    .tallas-grid {
+        justify-content: center;
+    }
+}

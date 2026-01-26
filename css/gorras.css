@@ -1,0 +1,106 @@
+/* Estilos específicos para gorras */
+.gorras-hero {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+}
+
+/* Efecto de visera */
+.visor-effect {
+    position: relative;
+}
+
+.visor-effect::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+/* Áreas de personalización */
+.personalization-areas {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.area-preview {
+    background: var(--color-light-gray);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    text-align: center;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.area-preview:hover {
+    background: var(--gradient-primary);
+    color: var(--color-white);
+    transform: scale(1.05);
+}
+
+.area-preview i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Efecto de ajuste */
+.adjustable-effect {
+    position: relative;
+}
+
+.adjustable-effect::after {
+    content: '⚙️';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.2rem;
+    animation: rotate 4s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Colores de gorra */
+.color-options {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    justify-content: center;
+}
+
+.color-option {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid var(--color-white);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.color-option:hover {
+    transform: scale(1.2);
+    box-shadow: var(--shadow-soft);
+}
+
+.color-option.black { background: #000000; }
+.color-option.white { background: #ffffff; border-color: var(--color-gray); }
+.color-option.red { background: #e74c3c; }
+.color-option.blue { background: #3498db; }
+.color-option.green { background: #27ae60; }
+
+/* Responsive específico */
+@media (max-width: 768px) {
+    .personalization-areas {
+        grid-template-columns: 1fr;
+    }
+    
+    .color-options {
+        flex-wrap: wrap;
+    }
+}

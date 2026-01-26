@@ -1,0 +1,49 @@
+/* Estilos específicos para vasos térmicos */
+.vasos-termicos-hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.producto-card .producto-badge.special {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    animation: gradientShift 3s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background: linear-gradient(135deg, #667eea, #764ba2); }
+    50% { background: linear-gradient(135deg, #764ba2, #667eea); }
+}
+
+/* Efecto degradado específico */
+.vaso-degradado {
+    position: relative;
+    overflow: hidden;
+}
+
+.vaso-degradado::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        rgba(102, 126, 234, 0.1) 0%, 
+        rgba(118, 75, 162, 0.1) 25%,
+        rgba(102, 126, 234, 0.1) 50%,
+        rgba(118, 75, 162, 0.1) 75%,
+        rgba(102, 126, 234, 0.1) 100%);
+    background-size: 20px 20px;
+    animation: moveGradient 4s linear infinite;
+}
+
+@keyframes moveGradient {
+    0% { background-position: 0 0; }
+    100% { background-position: 20px 20px; }
+}
+
+/* Responsive específico */
+@media (max-width: 768px) {
+    .vaso-degradado::before {
+        background-size: 15px 15px;
+    }
+}

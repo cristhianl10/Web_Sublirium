@@ -1,0 +1,153 @@
+/* Estilos específicos para lámina de aluminio */
+.lamina-aluminio-hero {
+    background: linear-gradient(135deg, #bdc3c7 0%, #2c3e50 100%);
+}
+
+/* Efecto metálico */
+.metallic-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.metallic-effect::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, 
+        transparent 30%, 
+        rgba(255, 255, 255, 0.5) 50%, 
+        transparent 70%);
+    animation: metallicShine 3s ease-in-out infinite;
+}
+
+@keyframes metallicShine {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Formato A4 indicator */
+.format-indicator {
+    background: var(--color-light-gray);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin: 1rem 0;
+    text-align: center;
+    position: relative;
+}
+
+.format-indicator::before {
+    content: 'A4';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gradient-primary);
+    color: var(--color-white);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.format-size {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-black);
+}
+
+.format-dimensions {
+    font-size: 0.9rem;
+    color: var(--color-gray);
+}
+
+/* Aplicaciones con iconos */
+.aplicaciones-grid .aplicacion {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--color-light-gray);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.aplicaciones-grid .aplicacion:hover {
+    background: var(--gradient-primary);
+    color: var(--color-white);
+    transform: translateY(-2px);
+}
+
+.aplicaciones-grid .aplicacion::before {
+    content: '🏆';
+    font-size: 1.2rem;
+}
+
+.aplicacion[data-type="placa"]::before { content: '🏆'; }
+.aplicacion[data-type="señal"]::before { content: '🚧'; }
+.aplicacion[data-type="arte"]::before { content: '🎨'; }
+.aplicacion[data-type="diploma"]::before { content: '📜'; }
+.aplicacion[data-type="corporativo"]::before { content: '🏢'; }
+.aplicacion[data-type="premio"]::before { content: '🥇'; }
+
+/* Efecto de reflejo */
+.reflection-effect {
+    position: relative;
+}
+
+.reflection-effect::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.3) 0%, 
+        transparent 50%, 
+        rgba(255, 255, 255, 0.1) 100%);
+    pointer-events: none;
+}
+
+/* Durabilidad indicator */
+.durability-indicator {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--color-light-gray);
+    border-radius: var(--border-radius);
+    margin: 1rem 0;
+}
+
+.durability-bars {
+    display: flex;
+    gap: 2px;
+    flex: 1;
+}
+
+.durability-bar {
+    height: 8px;
+    background: var(--color-gray);
+    border-radius: 4px;
+    flex: 1;
+    transition: var(--transition);
+}
+
+.durability-bar.active {
+    background: var(--gradient-primary);
+}
+
+/* Responsive específico */
+@media (max-width: 768px) {
+    .aplicaciones-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .durability-indicator {
+        flex-direction: column;
+        text-align: center;
+    }
+}

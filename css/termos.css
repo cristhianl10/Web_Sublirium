@@ -1,0 +1,50 @@
+/* Estilos específicos para termos */
+.termos-hero {
+    background: linear-gradient(135deg, #2C3E50 0%, #3498DB 100%);
+}
+
+.producto-card .producto-badge {
+    background: linear-gradient(135deg, #3498DB, #2980B9);
+}
+
+.producto-card .producto-badge.special {
+    background: linear-gradient(135deg, #E74C3C, #C0392B);
+}
+
+/* Efectos de temperatura */
+.termo-effect {
+    position: relative;
+}
+
+.termo-effect::after {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 80%;
+    background: linear-gradient(to bottom, #ff4757, #3742fa);
+    border-radius: 2px;
+    opacity: 0.7;
+}
+
+/* Capacidades con colores diferentes */
+.producto-card[data-capacity="350ml"] .producto-badge {
+    background: linear-gradient(135deg, #27AE60, #2ECC71);
+}
+
+.producto-card[data-capacity="600ml"] .producto-badge {
+    background: linear-gradient(135deg, #F39C12, #E67E22);
+}
+
+.producto-card[data-capacity="750ml"] .producto-badge {
+    background: linear-gradient(135deg, #E74C3C, #C0392B);
+}
+
+/* Responsive específico */
+@media (max-width: 768px) {
+    .termo-effect::after {
+        width: 3px;
+    }
+}
