@@ -22,6 +22,15 @@
     opacity: 0.5;
 }
 
+/* Header product image sizing (moved from inline in camisetas.html) */
+.header-visual .product-floating-image {
+    width:280px;
+    max-width:100%;
+    height:auto;
+    display:block;
+    margin:0 auto;
+}
+
 /* Tallas con diferentes colores */
 .tallas-grid .talla {
     transition: var(--transition);

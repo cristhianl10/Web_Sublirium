@@ -10,7 +10,7 @@
 }
 
 .producto-card[data-type="doble-tapa"] .producto-badge.premium {
-    background: linear-gradient(135deg, #c0c0c0, #silver);
+    background: linear-gradient(135deg, #c0c0c0, silver);
     color: var(--color-black);
 }
 

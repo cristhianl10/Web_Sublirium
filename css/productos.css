@@ -123,16 +123,118 @@
 .spec {
     font-size: 0.9rem;
     color: var(--color-gray);
+    position: relative;
+    padding-left: 1.5rem;
 }
 
 .spec::before {
-    content: '';
-    display: inline-block;
-    width: 4px;
-    height: 4px;
+    content: '\2022'; /* Bullet point */
+    position: absolute;
+    left: 0;
+    color: var(--gradient-primary);
+    font-weight: bold;
+}
+
+/* New product details section */
+.product-detail {
+    padding: 4rem 0;
+    background: var(--color-white);
+}
+
+.product-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.product-header .back-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.product-header .back-link:hover {
+    color: var(--color-secondary);
+}
+
+.product-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-black);
+    margin-left: 1rem;
+}
+
+.product-content {
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.product-image-gallery {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+}
+
+.main-product-image {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+}
+
+.product-info {
+    flex: 2;
+    min-width: 300px;
+}
+
+.product-description {
+    font-size: 1.1rem;
+    color: var(--color-gray);
+    margin-bottom: 2rem;
+    line-height: 1.7;
+}
+
+.product-features {
+    list-style: none;
+    margin-bottom: 2rem;
+}
+
+.product-features li {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1rem;
+    color: var(--color-black);
+    margin-bottom: 0.8rem;
+}
+
+.product-features li i {
+    color: var(--color-primary);
+}
+
+.product-cta .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
     background: var(--gradient-primary);
-    border-radius: 50%;
-    margin-right: 0.5rem;
+    color: var(--color-white);
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 700;
+    transition: var(--transition);
+}
+
+.product-cta .cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-strong);
 }
 
 /* Secciones específicas de productos */

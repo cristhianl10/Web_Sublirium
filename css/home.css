@@ -178,6 +178,15 @@
     padding: 10px; /* Aplicar el padding aquí */
 }
 
+.producto-image .producto-icon-portarretrato-reloj{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 10px; /* Aplicar el padding aquí */
+}
+
 .producto-overlay {
     position: absolute;
     top: 0;
@@ -379,4 +388,13 @@
     .productos-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* Thumb for portarretrato on homepage (moved from inline in index.html) */
+.portarretrato-thumb{
+    width:220px;
+    max-width:100%;
+    height:auto;
+    display:block;
+    margin:0 auto;
 }

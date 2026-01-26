@@ -12,6 +12,15 @@
     animation: pulse 2s infinite;
 }
 
+.showcase-icon .product-floating-image {
+    width:220px;
+    max-width:100%;
+    height: auto ;
+    display:block;
+    margin:0 auto;
+}
+
+
 .producto-card[data-category*="premium"] .producto-image {
     background: linear-gradient(135deg, #ffd700 0%, #ffb347 100%);
 }
