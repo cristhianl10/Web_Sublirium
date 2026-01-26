@@ -137,3 +137,14 @@
         font-size: 1.2rem;
     }
 }
+
+/* Aumentar tamaño de imágenes en grid para la página de mousepad */
+.producto-image {
+    height: 360px; /* aumenta desde 250px */
+}
+
+@media (max-width: 768px) {
+    .producto-image {
+        height: 300px;
+    }
+}

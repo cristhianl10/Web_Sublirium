@@ -26,7 +26,7 @@
 
 .producto-image {
     position: relative;
-    height: 250px;
+    height: 360px;
     background: var(--color-light-gray);
     display: flex;
     align-items: center;
@@ -45,7 +45,7 @@
 }
 
 .producto-placeholder i {
-    font-size: 3rem;
+    font-size: 4rem;
     margin-bottom: 1rem;
     opacity: 0.5;
 }
@@ -394,6 +394,11 @@
 
     .cta-content h2 {
         font-size: 2rem;
+    }
+
+    /* Ajustes responsive para imágenes del grid */
+    .producto-image {
+        height: 300px;
     }
 
     .tallas-grid,

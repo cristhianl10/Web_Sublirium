@@ -173,9 +173,46 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100;
+    height: 100%;
+    padding: 10px; /* Aplicar el padding aquí */
+}
+
+/* Agrandar solo las imágenes dentro del grid de productos (no el contenedor) */
+.productos .producto-image .producto-icon img,
+.productos .producto-image .product-item-img,
+.productos .producto-image .product-floating-image {
+    max-height: 85%;
+    max-width: 85%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Ajuste específico para las miniaturas del tomatodo, mousepad y bolso si siguen pequeñas */
+.productos .producto-item[href$="tomatodos.html"] .producto-image .producto-icon img,
+.productos .producto-item[href$="mousepad.html"] .producto-image .producto-icon img,
+.productos .producto-item[href$="bolsos.html"] .producto-image .producto-icon img {
+    max-height: 92%;
+    max-width: 92%;
+}
+
+
+.producto-icon-laminaspiderman{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100%;
     padding: 10px; /* Aplicar el padding aquí */
+}
+
+/* Agrandar imagen de lámina de aluminio en index */
+.producto-icon-laminaspiderman .product-floating-image {
+    width: 180px;
+    height: 180px;
 }
 
 .producto-image .producto-icon-portarretrato-reloj{
@@ -185,6 +222,16 @@
     width: 100%;
     height: 100%;
     padding: 10px; /* Aplicar el padding aquí */
+}
+
+/* Agrandar miniatura del portarretrato con reloj en index */
+.producto-icon-portarretrato-reloj .product-item-img,
+.producto-icon-portarretrato-reloj .portarretrato-thumb {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
 }
 
 .producto-overlay {
@@ -392,9 +439,10 @@
 
 /* Thumb for portarretrato on homepage (moved from inline in index.html) */
 .portarretrato-thumb{
-    width:220px;
+    width:180px;
+    height:180px;
     max-width:100%;
-    height:auto;
+    object-fit:contain;
     display:block;
     margin:0 auto;
 }
