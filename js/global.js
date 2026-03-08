@@ -123,47 +123,6 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('load', () => {
         document.body.classList.add('loaded');
     });
-
-    // Scroll to top functionality
-    const scrollToTopBtn = document.createElement('button');
-    scrollToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
-    scrollToTopBtn.className = 'scroll-to-top';
-    scrollToTopBtn.style.cssText = `
-        position: fixed;
-        bottom: 2rem;
-        right: 2rem;
-        width: 50px;
-        height: 50px;
-        background: var(--gradient-primary);
-        color: white;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        z-index: 1000;
-        box-shadow: var(--shadow-soft);
-    `;
-    
-    document.body.appendChild(scrollToTopBtn);
-
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            scrollToTopBtn.style.opacity = '1';
-            scrollToTopBtn.style.visibility = 'visible';
-        } else {
-            scrollToTopBtn.style.opacity = '0';
-            scrollToTopBtn.style.visibility = 'hidden';
-        }
-    });
-
-    scrollToTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
 });
 
 // Utility functions

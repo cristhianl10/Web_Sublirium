@@ -26,7 +26,7 @@
 
 .producto-image {
     position: relative;
-    height: 360px;
+    height: 450px;
     background: var(--color-light-gray);
     display: flex;
     align-items: center;
@@ -398,7 +398,7 @@
 
     /* Ajustes responsive para imágenes del grid */
     .producto-image {
-        height: 300px;
+        height: 380px;
     }
 
     .tallas-grid,
