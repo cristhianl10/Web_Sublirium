@@ -13,11 +13,10 @@
 }
 
 .showcase-icon .product-floating-image {
-    width:220px;
-    max-width:100%;
-    height: auto ;
-    display:block;
-    margin:0 auto;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
 /* Ajuste para imágenes de productos en las tarjetas */
