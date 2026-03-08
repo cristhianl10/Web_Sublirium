@@ -18,6 +18,9 @@
     box-shadow: var(--shadow-soft);
     transition: var(--transition);
     position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .producto-card:hover {
@@ -27,7 +30,7 @@
 
 .producto-image {
     position: relative;
-    height: 450px;
+    height: 500px; /* Increased from 450px for more space */
     background: var(--color-light-gray);
     display: flex;
     align-items: center;
@@ -101,8 +104,11 @@
     padding: 2rem;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    flex-grow: 1;
+    flex-grow: 1; /* Occupy remaining space to push footer down */
+}
+
+.btn-add-cart {
+    margin-top: auto; /* Push button to the very bottom of .producto-info */
 }
 
 .producto-info h3 {
