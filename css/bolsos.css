@@ -201,11 +201,11 @@
 
 /* Aumentar tamaño de imágenes en grid para la página de bolsos */
 .producto-image {
-    height: 360px; /* aumenta desde 250px */
+    height: 420px; /* Match global height */
 }
 
 @media (max-width: 768px) {
     .producto-image {
-        height: 300px;
+        height: 280px;
     }
 }
