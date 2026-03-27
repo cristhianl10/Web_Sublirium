@@ -151,3 +151,14 @@
         text-align: center;
     }
 }
+
+/* Aumentar tamaño de imágenes en grid */
+.producto-image {
+    height: 420px;
+}
+
+@media (max-width: 768px) {
+    .producto-image {
+        height: 380px;
+    }
+}

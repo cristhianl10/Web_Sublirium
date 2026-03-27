@@ -91,11 +91,11 @@
 
 /* Aumentar tamaño de imágenes en grid para esta página */
 .producto-image {
-    height: 360px; /* antes: 250px en productos.css */
+    height: 420px; /* Match global height */
 }
 
 @media (max-width: 768px) {
     .producto-image {
-        height: 300px;
+        height: 280px;
     }
 }
