@@ -21,10 +21,6 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-<<<<<<< HEAD
-    min-height: auto; /* Allow height to be auto for better responsiveness */
-=======
->>>>>>> 38894ad3084c481b1c5a47dbf6b489d23a3ca31b
 }
 
 .producto-card:hover {
@@ -34,11 +30,7 @@
 
 .producto-image {
     position: relative;
-<<<<<<< HEAD
-    height: 350px; /* Reduced from 500px for better mobile fit */
-=======
     height: 420px; /* Taller rectangle: shows full image with adequate vertical space */
->>>>>>> 38894ad3084c481b1c5a47dbf6b489d23a3ca31b
     background: var(--color-light-gray);
     display: flex;
     align-items: center;
@@ -423,11 +415,7 @@
 
     /* Ajustes responsive para imágenes del grid */
     .producto-image {
-<<<<<<< HEAD
-        height: 280px; /* Further reduced for mobile */
-=======
         height: 360px;
->>>>>>> 38894ad3084c481b1c5a47dbf6b489d23a3ca31b
     }
 
     .tallas-grid,

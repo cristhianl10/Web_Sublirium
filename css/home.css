@@ -369,6 +369,10 @@
 
 /* Responsive para Home */
 @media (max-width: 768px) {
+    .hero {
+        padding-top: 100px; /* Added padding to prevent fixed header from covering content */
+    }
+
     .hero-container {
         grid-template-columns: 1fr;
         text-align: center;
