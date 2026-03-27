@@ -472,17 +472,29 @@ body {
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 60px; /* Reduced from 70px to match typical mobile header height */
+        top: 60px;
         height: calc(100vh - 60px);
         overflow-y: auto;
-        flex-direction: column;
+        display: block; /* Changed from flex to block for better long list scrolling */
         background-color: rgba(0, 0, 0, 0.98);
         width: 100%;
         text-align: center;
         transition: var(--transition);
-        padding: 2rem 0;
+        padding: 2rem 0 8rem; /* Significant bottom padding for mobile browsers */
         backdrop-filter: blur(10px);
         z-index: 999;
+        -webkit-overflow-scrolling: touch; /* Smooth scroll for iOS */
+    }
+
+    .nav-menu li {
+        margin: 1.5rem 0;
+        width: 100%;
+    }
+
+    .nav-menu a {
+        display: inline-block;
+        width: 100%;
+        padding: 0.75rem 0;
     }
 
     .nav-menu.active {
@@ -511,7 +523,7 @@ body {
         visibility: visible;
         transform: none;
         background: rgba(255, 255, 255, 0.05);
-        margin-top: 0.5rem;
+        margin-top: 0; /* Keep it tight for better scrolling */
         box-shadow: none;
     }
 
