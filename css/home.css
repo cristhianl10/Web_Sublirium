@@ -21,7 +21,7 @@
 }
 
 .hero-title {
-    font-size: 4rem;
+    font-size: clamp(2.5rem, 8vw, 4rem);
     font-weight: 800;
     line-height: 1.1;
     margin-bottom: 1.5rem;
@@ -42,6 +42,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 
 .floating-products {
@@ -235,19 +236,7 @@
 }
 
 .producto-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-white);
-    font-weight: 600;
-    opacity: 0;
-    transition: var(--transition);
+    display: none; /* Removed "Ver más" overlay as requested */
 }
 
 .producto-item:hover .producto-overlay {
@@ -391,13 +380,15 @@
     }
 
     .hero-visual {
-        height: 300px;
+        height: auto;
+        min-height: 350px;
+        margin-top: 1rem;
     }
 
     .floating-products {
         grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-        padding: 1rem;
+        gap: 0.75rem;
+        padding: 0.5rem;
     }
 
     .product-card {
@@ -429,12 +420,26 @@
     }
 
     .floating-products {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr; /* Keep 2 columns but make items smaller */
     }
 
     .floating-1, .floating-2, .floating-3, .floating-4 {
-        grid-column: 1;
+        grid-column: auto;
         grid-row: auto;
+    }
+    
+    .product-card {
+        padding: 0.75rem;
+        min-height: 90px;
+    }
+    
+    .product-floating-image {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .product-card span {
+        font-size: 0.85rem;
     }
 
     .productos-grid {
