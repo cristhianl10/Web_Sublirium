@@ -82,6 +82,7 @@
 }
 
 .producto-overlay {
+<<<<<<< HEAD
     position: absolute;
     top: 0;
     left: 0;
@@ -98,6 +99,9 @@
 
 .producto-card:hover .producto-overlay {
     opacity: 1;
+=======
+    display: none; /* Removed "Personalizar" overlay as requested */
+>>>>>>> d7aee972c22dbba5aa195820602598af02b4ff5c
 }
 
 .producto-info {

@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
         hamburger.addEventListener('click', function() {
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
         });
 
         // Close mobile menu when clicking on a link
@@ -14,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
+                document.body.classList.remove('no-scroll');
             });
         });
 
@@ -22,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!hamburger.contains(event.target) && !navMenu.contains(event.target)) {
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
+                document.body.classList.remove('no-scroll');
             }
         });
     }
