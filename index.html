@@ -7,6 +7,8 @@
     <title>SUBLIRIUM - Productos Personalizados Sublimados</title>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/favorites.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -46,6 +48,10 @@
                     <li><a href="#personalizacion">Personalización</a></li>
                     <li><a href="#contacto">Contacto</a></li>
                 </ul>
+                <div class="cart-icon-container" id="cart-icon-container" style="cursor: pointer; margin: 0 1rem;">
+                    <i class="fas fa-shopping-cart" id="cart-icon" style="font-size: 1.2rem; color: white;"></i>
+                    <span id="cart-count" class="badge">0</span>
+                </div>
                 <div class="hamburger">
                     <span></span>
                     <span></span>
@@ -84,7 +90,8 @@
                         <span>Camisetas</span>
                     </a>
                     <a href="bolsos.html" class="product-card floating-4">
-                        <div class="product-icon">🎒</div>
+                        <div class="product-icon"><img src="assets/main-products/web bolso sublirium.png" alt="Bolsos"
+                                class="product-floating-image"></div>
                         <span>Bolsos</span>
                     </a>
                 </div>
@@ -158,7 +165,10 @@
                 </a>
                 <a href="gorras.html" class="producto-item">
                     <div class="producto-image">
-                        <div class="producto-icon">🧢</div>
+                        <div class="producto-icon">
+                            <img src="assets/main-products/gorra sublimada.png" alt="Gorras"
+                                class="product-item-img">
+                        </div>
                         <div class="producto-overlay">
                         </div>
                     </div>
@@ -231,7 +241,7 @@
                 </a>
                 <a href="llaveros.html" class="producto-item">
                     <div class="producto-image">
-                        <div class="producto-icon"><img src="assets/main-products/llavero.png" alt="Llaveros"
+                        <div class="producto-icon"><img src="assets/main-products/llavero circular.png" alt="Llaveros"
                                 class="product-item-img"></div>
                         <div class="producto-overlay">
                         </div>
@@ -261,7 +271,7 @@
                 </a>
                 <a href="platos.html" class="producto-item">
                     <div class="producto-image">
-                        <div class="producto-icon"><img src="assets/main-products/plato.png" alt="Platos"
+                        <div class="producto-icon"><img src="assets/main-products/plato sublimado 1.png" alt="Platos"
                                 class="product-item-img"></div>
                         <div class="producto-overlay">
                         </div>
@@ -349,6 +359,26 @@
         </div>
     </section>
 
+    <!-- Cart Drawer -->
+    <div id="cart-drawer" class="cart-drawer">
+        <div class="cart-header">
+            <h3>🛒 Mi Carrito</h3>
+            <button class="close-cart" id="close-cart">&times;</button>
+        </div>
+        <div id="cart-items" class="cart-items-list"></div>
+        <div class="cart-footer">
+            <div class="cart-summary">
+                <div class="cart-total-row">
+                    <span class="cart-total-label">Total:</span>
+                    <span class="cart-total-amount" id="cart-total">$0.00</span>
+                </div>
+            </div>
+            <button class="cta-button" onclick="checkout()" style="width: 100%; margin-bottom: 1rem;">Ir al Checkout</button>
+            <button class="btn-secondary" id="clear-cart-button" style="width: 100%; color: white; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">Vaciar Carrito</button>
+        </div>
+    </div>
+    <div id="cart-overlay" class="cart-overlay"></div>
+
     <!-- Footer -->
     <footer id="contacto" class="footer">
         <div class="container">
@@ -366,7 +396,7 @@
                         <a href="https://www.instagram.com/subli_rium/" target="_blank" rel="noopener noreferrer"><i
                                 class="fab fa-instagram"></i></a>
                         <a href="https://api.whatsapp.com/send/?phone=593991075732&text&type=phone_number&app_absent=0"
-                            target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
+                            target="_blank" rel="noopener noreferrer"><i class="fas fa-shopping-cart"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
@@ -400,7 +430,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 SUBLIRIUM. Todos los derechos reservados.</p>
+                <p>&copy; 2026 SUBLIRIUM. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
@@ -408,11 +438,18 @@
     <!-- WhatsApp Floating Button -->
     <a href="https://api.whatsapp.com/send/?phone=593991075732&text&type=phone_number&app_absent=0"
         class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
-        <i class="fab fa-whatsapp"></i>
+        <i class="fas fa-shopping-cart"></i>
     </a>
 
     <script src="js/global.js"></script>
     <script src="js/home.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/cart-injector.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/favorites.js"></script>
 </body>
 
 </html>
+
+
