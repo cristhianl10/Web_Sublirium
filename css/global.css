@@ -7,6 +7,8 @@
     --color-gray: #666666;
     --color-light-gray: #f0f0f0;
     --font-primary: 'Inter', sans-serif;
+    --font-display: 'Anton', sans-serif;
+    --font-slogan: 'Parisienne', cursive;
     --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.1);
     --shadow-strong: 0 20px 60px rgba(0, 0, 0, 0.2);
     --border-radius: 12px;
@@ -65,13 +67,15 @@ body {
 }
 
 .logo-text {
-    font-size: 1.8rem;
-    font-weight: 800;
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 400;
     background: var(--gradient-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    letter-spacing: -0.02em;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
 }
 
 .nav-menu {
@@ -220,17 +224,22 @@ body {
 }
 
 .page-title {
-    font-size: 3.5rem;
-    font-weight: 800;
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 400;
     color: var(--color-white);
     margin-bottom: 1rem;
     line-height: 1.1;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
 .page-subtitle {
-    font-size: 1.25rem;
-    color: rgba(255, 255, 255, 0.8);
+    font-family: var(--font-slogan);
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    color: rgba(255, 255, 255, 0.7);
     margin-bottom: 2rem;
+    letter-spacing: 0.03em;
     line-height: 1.6;
 }
 
@@ -300,11 +309,14 @@ body {
 
 /* Estilos Globales */
 .section-title {
+    font-family: var(--font-display);
     font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 700;
+    font-weight: 400;
+    letter-spacing: 0.08em;
     text-align: center;
     margin-bottom: 3rem;
     color: var(--color-black);
+    text-transform: uppercase;
 }
 
 .gradient-text {
@@ -401,6 +413,9 @@ body {
     margin-bottom: 1.5rem;
     font-size: 1.2rem;
     font-weight: 600;
+    font-family: var(--font-display);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
 .footer-section ul {
@@ -415,6 +430,14 @@ body {
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
     transition: var(--transition);
+}
+
+.footer-slogan {
+    font-family: var(--font-slogan);
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.03em;
 }
 
 .footer-section a:hover {

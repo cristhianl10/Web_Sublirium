@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo Sublirium - El arte de regalar emociones</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Parisienne&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --gradient-brand: linear-gradient(135deg, #00D4FF 0%, #FF00FF 35%, #FF6600 65%, #FFFF00 100%);
+            --bg-primary: #0a0a0a;
+            --bg-secondary: rgba(255,255,255,0.03);
+            --bg-card: rgba(255,255,255,0.02);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255,255,255,0.7);
+            --text-muted: rgba(255,255,255,0.5);
+            --border-color: rgba(255,255,255,0.05);
+            --shadow-card: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f5f5f5;
+            --bg-secondary: rgba(0,0,0,0.03);
+            --bg-card: rgba(255,255,255,0.8);
+            --text-primary: #1a1a1a;
+            --text-secondary: rgba(0,0,0,0.8);
+            --text-muted: rgba(0,0,0,0.5);
+            --border-color: rgba(0,0,0,0.1);
+            --shadow-card: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); overflow-x: hidden; transition: background 0.3s, color 0.3s; }
+        
+        /* Theme Toggle */
+        .theme-toggle { position: fixed; top: 1rem; right: 1rem; z-index: 1001; background: var(--bg-secondary); border: 1px solid var(--border-color); padding: 0.5rem; border-radius: 30px; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; }
+        .theme-toggle-btn { width: 36px; height: 36px; border-radius: 50%; border: none; background: var(--gradient-brand); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: transform 0.3s; }
+        .theme-toggle-btn:hover { transform: scale(1.1); }
+        
+        /* Header */
+        .header { position: fixed; top: 0; width: 100%; background: var(--bg-primary); border-bottom: 1px solid var(--border-color); backdrop-filter: blur(20px); z-index: 1000; padding: 0.8rem 0; transition: background 0.3s; }
+        .header-content { max-width: 1400px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo-main { font-family: 'Anton'; font-size: clamp(1.3rem, 4vw, 2rem); letter-spacing: 0.15em; background: var(--gradient-brand); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .logo-slogan { font-family: 'Parisienne'; font-size: clamp(0.7rem, 2vw, 0.9rem); color: var(--text-secondary); }
+        
+        /* Hero */
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 6rem 1.5rem 4rem; position: relative; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at 20% 80%, rgba(0, 212, 255, 0.15) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(255, 0, 255, 0.15) 0%, transparent 50%); pointer-events: none; }
+        .hero-content { position: relative; z-index: 1; }
+        .hero-logo { font-family: 'Anton'; font-size: clamp(3rem, 12vw, 10rem); letter-spacing: 0.15em; background: var(--gradient-brand); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem; }
+        .hero-slogan { font-family: 'Parisienne'; font-size: clamp(1.2rem, 3vw, 2.5rem); color: var(--text-secondary); margin-bottom: 1.5rem; }
+        .hero-description { font-size: clamp(0.9rem, 2vw, 1.1rem); color: var(--text-muted); max-width: 600px; margin: 0 auto; line-height: 1.8; }
+        .scroll-indicator { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: var(--text-muted); animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(10px); } }
+        
+        /* Categorías */
+        .categories { padding: 3rem 1rem; max-width: 1400px; margin: 0 auto; }
+        .category { margin-bottom: 4rem; scroll-margin-top: 5.5rem; }
+        .category-header { text-align: center; margin-bottom: 2rem; }
+        .category-title { font-family: 'Anton'; font-size: clamp(1.5rem, 4vw, 3rem); letter-spacing: 0.1em; margin-bottom: 0.5rem; position: relative; display: inline-block; color: var(--text-primary); }
+        .category-title::after { content: ''; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); width: 50px; height: 3px; background: var(--gradient-brand); border-radius: 2px; }
+        .category-subtitle { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.8rem; }
+        
+        /* Índice de categorías */
+        .catalog-index { max-width: 1400px; margin: 0 auto; padding: 0 1rem 2rem; display: flex; flex-wrap: wrap; gap: 0.45rem; justify-content: center; align-items: center; }
+        .catalog-index a { font-size: 0.72rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.4rem 0.65rem; border-radius: 999px; border: 1px solid var(--border-color); color: var(--text-secondary); text-decoration: none; background: var(--bg-secondary); transition: border-color 0.2s, color 0.2s; }
+        .catalog-index a:hover { border-color: rgba(0, 212, 255, 0.45); color: var(--text-primary); }
+
+        /* Products Grid — uno al lado del otro */
+        .productos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 1.25rem; align-items: stretch; }
+        .producto-card { min-width: 0; width: 100%; background: var(--bg-secondary); border-radius: 14px; overflow: hidden; border: 1px solid var(--border-color); transition: all 0.3s; display: flex; flex-direction: column; }
+        .producto-card:hover { transform: translateY(-5px); border-color: rgba(0, 212, 255, 0.3); box-shadow: var(--shadow-card); }
+        .producto-image { width: 100%; height: 175px; display: flex; align-items: center; justify-content: center; padding: 0.85rem; background: var(--bg-card); position: relative; overflow: hidden; }
+        .producto-image img { width: auto; height: auto; max-width: 100%; max-height: 150px; object-fit: contain; }
+        .producto-card:hover .producto-image img { transform: scale(1.05); }
+        .producto-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--text-muted); gap: 0.4rem; }
+        .producto-placeholder i { font-size: 2.25rem; opacity: 0.5; }
+        .producto-placeholder span { font-size: 0.75rem; opacity: 0.5; }
+        .no-image { display: none; }
+        .producto-badge { position: absolute; top: 0.5rem; right: 0.5rem; padding: 0.2rem 0.5rem; background: var(--gradient-brand); border-radius: 10px; font-size: 0.62rem; font-weight: 600; color: #000; z-index: 5; }
+        .producto-info { padding: 0.95rem 0.9rem; flex: 1; display: flex; flex-direction: column; }
+        .producto-name { font-family: 'Anton'; font-size: 0.98rem; letter-spacing: 0.07em; margin-bottom: 0.25rem; color: var(--text-primary); line-height: 1.3; }
+        .producto-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.35; }
+        .spec { display: block; font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem; }
+        
+        /* Footer */
+        .footer { background: var(--bg-secondary); padding: 3rem 1.5rem; text-align: center; border-top: 1px solid var(--border-color); }
+        .footer-logo { font-family: 'Anton'; font-size: clamp(1.5rem, 4vw, 2rem); letter-spacing: 0.15em; background: var(--gradient-brand); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .footer-slogan { font-family: 'Parisienne'; font-size: clamp(1rem, 2.5vw, 1.2rem); color: var(--text-secondary); margin: 0.5rem 0 1.5rem; }
+        .footer-contact { display: flex; justify-content: center; gap: clamp(1rem, 3vw, 2rem); flex-wrap: wrap; color: var(--text-secondary); font-size: 0.9rem; }
+        .footer-contact a { color: var(--text-secondary); text-decoration: none; }
+        .footer-contact a:hover { color: #00D4FF; }
+        .footer-social { display: flex; justify-content: center; gap: 0.8rem; margin-top: 1.5rem; }
+        .social-link { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; color: var(--text-primary); text-decoration: none; transition: all 0.3s; font-size: 0.9rem; }
+        .social-link:hover { background: var(--gradient-brand); border-color: transparent; color: #000; }
+        .copyright { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem; }
+        
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .productos-grid { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
+        }
+        
+        @media (max-width: 900px) {
+            .productos-grid { grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); }
+        }
+        
+        @media (max-width: 768px) {
+            .theme-toggle { top: 0.7rem; right: 0.7rem; padding: 0.4rem; }
+            .theme-toggle-btn { width: 32px; height: 32px; font-size: 0.9rem; }
+            .header-content { flex-direction: column; gap: 0.5rem; text-align: center; }
+            .logo-main { font-size: 1.5rem; }
+            .logo-slogan { font-size: 0.8rem; }
+            .hero { padding: 5rem 1rem 3rem; }
+            .hero-logo { font-size: clamp(2.5rem, 12vw, 5rem); }
+            .hero-slogan { font-size: 1.2rem; }
+            .hero-description { font-size: 0.9rem; }
+            .category { margin-bottom: 3rem; }
+            .category-title { font-size: 1.5rem; }
+            .productos-grid { grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 0.9rem; }
+            .producto-image { height: 140px; }
+            .producto-image img { max-height: 115px; }
+            .producto-info { padding: 0.75rem 0.65rem; }
+            .producto-name { font-size: 0.85rem; }
+            .producto-desc { font-size: 0.72rem; }
+            .producto-badge { font-size: 0.55rem; }
+            .footer { padding: 2rem 1rem; }
+            .footer-contact { flex-direction: column; gap: 0.8rem; }
+        }
+        
+        @media (max-width: 500px) {
+            .productos-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+            .producto-image { height: 120px; }
+            .producto-image img { max-height: 100px; }
+            .producto-name { font-size: 0.78rem; }
+            .producto-desc { font-size: 0.65rem; }
+            .spec { font-size: 0.6rem; }
+            .producto-placeholder i { font-size: 1.75rem; }
+            .producto-placeholder span { font-size: 0.68rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <button class="theme-toggle-btn" onclick="toggleTheme()" title="Cambiar modo">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-main">SUBLIRIUM</span>
+                <span class="logo-slogan">El arte de regalar emociones</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-logo">SUBLIRIUM</h1>
+            <p class="hero-slogan">El arte de regalar emociones</p>
+            <p class="hero-description">Descubre nuestra colección exclusive de productos personalizados. Cada pieza está diseñada para crear momentos únicos y memorables.</p>
+        </div>
+        <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
+    </section>
+
+    <nav class="catalog-index" aria-label="Categorías del catálogo">
+        <a href="#tazas">Tazas / Jarros</a>
+        <a href="#termos">Termos</a>
+        <a href="#vasos">Vasos térmicos</a>
+        <a href="#tomatodos">Tomatodos</a>
+        <a href="#camisetas">Camisetas</a>
+        <a href="#gorras">Gorras</a>
+        <a href="#mousepad">Mousepad</a>
+        <a href="#lamina">Lámina aluminio</a>
+        <a href="#bolsos">Bolsos</a>
+        <a href="#reloj">Reloj</a>
+        <a href="#portarretrato-reloj">Portarretrato reloj</a>
+        <a href="#libretas">Libretas</a>
+        <a href="#llaveros">Llaveros</a>
+        <a href="#bambu">Portarretrato bambú</a>
+        <a href="#forro">Forro almohada</a>
+        <a href="#platos">Platos</a>
+    </nav>
+
+    <main class="categories">
+        <!-- Tazas / Jarros (igual que tazas-jarros.html) -->
+        <section class="category" id="tazas">
+            <div class="category-header">
+                <h2 class="category-title">Tazas / Jarros</h2>
+                <p class="category-subtitle">Para cada momento especial</p>
+            </div>
+            <div class="productos-grid">
+                <div class="producto-card">
+                    <div class="producto-image"><span class="producto-badge">Más Popular</span><img src="assets/individual-products/tazas-jarros web/jarro blanco.png" alt="Jarro blanco"></div>
+                    <div class="producto-info"><h3 class="producto-name">Jarro blanco 11 oz AAA</h3><p class="producto-desc">Cerámica premium AAA</p><span class="spec">✓ 11oz capacidad</span></div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-image"><div class="producto-placeholder"><i class="fas fa-mug-hot"></i><span>Sin imagen aún</span></div></div>
+                    <div class="producto-info"><h3 class="producto-name">Jarro negro 11 oz AAA</h3><p class="producto-desc">Acabado mate elegante</p><span class="spec">✓ 11oz capacidad</span></div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-image"><span class="producto-badge">Mágico</span><img src="assets/individual-products/tazas-jarros web/jarro negro.png" alt="Jarro mágico negro"></div>
+                    <div class="producto-info"><h3 class="producto-name">Jarro mágico negro</h3><p class="producto-desc">Cambia de color con el calor</p><span class="spec">✓ Efecto sorpresa</span></div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-image"><img src="assets/individual-products/tazas-jarros web/jarro mágico negro cóncavo.png" alt="Jarro mágico cóncavo"></div>
+                    <div class="producto-info"><h3 class="producto-name">Jarro mágico negro cóncavo con cuchara</h3><p class="producto-desc">Cóncavo con cuchara</p><span class="spec">✓ Incluye cuchara</span></div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-image"><img src="assets/individual-products/tazas-jarros web/jarro mágico rojo.png" alt="Jarro mágico rojo"></div>
+                    <div class="producto-info"><h3 class="producto-name">Jarro mágico rojo</h3><p class="producto-desc">Efecto visual impactante</p><span class="spec">✓ Color base rojo</span></div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-image"><img src="assets/individual-products/tazas-jarros web/Jarro mágico azul.png" alt="Jarro mágico azul"></div>
+                    <div class="producto-info"><h3 class="producto-name">Jarro mágico azul</h3><p class="producto-desc">Perfecto para sorprender</p><span class="spec">✓ Color base azul</span></div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-image"><div class="producto-placeholder"><i class="fas fa-palette"></i><span>Sin imagen aún</span></div></div>
+                    <div class="producto-info"><h3 class="producto-name">Tazas coloridas</h3><p class="producto-desc">Múltiples colores</p><span class="spec">✓ Interior colorido</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Termos -->
+        <section class="category" id="termos">
+            <div class="category-header">
+                <h2 class="category-title">Termos</h2>
+                <p class="category-subtitle">Mantén tu bebida perfecta</p>
+            </div>
+            <div class="productos-grid">
+                <div class="producto-card">
+                    <div class="producto-image"><img src="assets/individual-products/termos web/termo Renata.png" alt="Termo 350ml"></div>
+                    <div class="producto-info"><h3 class="producto-name">Termo blanco de aluminio 350ml</h3><p class="producto-desc">Compacto y práctico</p><span class="spec">✓ 350ml capacidad</span></div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-image"><div class="producto-placeholder"><i class="fas fa-thermometer-half"></i><span>Sin imagen aún</span></div></div>
+                    <div class="producto-info"><h3 class="producto-name">Termo blanco de aluminio 600ml</h3><p class="producto-desc">Tamaño medio</p><span class="spec">✓ 600ml capacidad</span></div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-image"><div class="producto-placeholder"><i class="fas fa-thermometer-half"></i><span>Sin imagen aún</span></div></div>
+                    <div class="producto-info"><h3 class="producto-name">Termo blanco de aluminio 700ml</h3><p class="producto-desc">Gran capacidad</p><span class="spec">✓ 700ml capacidad</span></div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-image"><div class="producto-placeholder"><i class="fas fa-thermometer-half"></i><span>Sin imagen aún</span></div></div>
+                    <div class="producto-info"><h3 class="producto-name">Termo blanco de aluminio 750ml</h3><p class="producto-desc">Capacidad máxima</p><span class="spec">✓ 750ml capacidad</span></div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-image"><div class="producto-placeholder"><i class="fas fa-thermometer-half"></i><span>Sin imagen aún</span></div></div>
+                    <div class="producto-info"><h3 class="producto-name">Termo blanco de aluminio 750ml (1 tapa blanca)</h3><p class="producto-desc">Tapa especial</p><span class="spec">✓ Tapa personalizable</span></div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-image"><img src="assets/individual-products/termos web/termo azul degradado.png" alt="Termo azul"></div>
+                    <div class="producto-info"><h3 class="producto-name">Termo degradado azul con sensor térmico</h3><p class="producto-desc">Con sensor térmico</p><span class="spec">✓ Sensor térmico</span></div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-image"><img src="assets/individual-products/termos web/termo rosa degradado.png" alt="Termo rosa"></div>
+                    <div class="producto-info"><h3 class="producto-name">Termo degradado rosa con sensor térmico</h3><p class="producto-desc">Con sensor térmico</p><span class="spec">✓ Sensor térmico</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vasos Térmicos -->
+        <section class="category" id="vasos">
+            <div class="category-header">
+                <h2 class="category-title">Vasos Térmicos</h2>
+                <p class="category-subtitle">Diseño y funcionalidad</p>
+            </div>
+            <div class="productos-grid">
+                <div class="producto-card">
+                    <div class="producto-image"><span class="producto-badge">Degradado</span><img src="assets/individual-products/vaso tumbler web/vaso tumbler degradado.png" alt="Vaso degradado"></div>
+                    <div class="producto-info"><h3 class="producto-name">Vaso térmico de aluminio blanco degradado</h3><p class="producto-desc">Efecto visual atractivo</p><span class="spec">✓ Efecto degradado</span></div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-image"><span class="producto-badge">Clásico</span><img src="assets/individual-products/vaso tumbler web/vaso tumbler blanco.png" alt="Vaso blanco"></div>
+                    <div class="producto-info"><h3 class="producto-name">Vaso térmico de aluminio blanco</h3><p class="producto-desc">Diseño clásico</p><span class="spec">✓ Superficie lisa</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tomatodos -->
+        <section class="category" id="tomatodos">
+            <div class="category-header">
+                <h2 class="category-title">Tomatodos</h2>
+                <p class="category-subtitle">Hidratación deportiva</p>
+            </div>
+            <div class="productos-grid">
+                <div class="producto-card">
+                    <div class="producto-image"><img src="assets/individual-products/tomatodos/ALUMINIO 750ML BLANCO DOBLE TAPA.png" alt="Tomatodo 750ml"></div>
+                    <div class="producto-info"><h3 class="producto-name">Tomatodo de Aluminio 750ml Blanco Doble Tapa</h3><p class="producto-desc">Doble tapa</p><span class="spec">✓ 750ml capacidad</span></div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-image"><img src="assets/individual-products/tomatodos/ALUMINIO 750 ML PLOMO DOBLE TAPA.png" alt="Tomatodo plomo"></div>
+                    <div class="producto-info"><h3 class="producto-name">Tomatodo de Aluminio 750ml Plomo Doble Tapa</h3><p class="producto-desc">Doble tapa</p><span class="spec">✓ 750ml capacidad</span></div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-image"><img src="assets/individual-products/tomatodos/ALUMINIO 750ML BLANCO DEPORTIVO.png" alt="Tomatodo deportivo"></div>
+                    <div class="producto-info"><h3 class="producto-name">Tomatodo de Aluminio 750ml Blanco Deportivo</h3><p class="producto-desc">Diseño ergonómico</p><span class="spec">✓ 750ml capacidad</span></div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-image"><img src="assets/individual-products/tomatodos/ALUMINIO 600 ML BLANCO DOBLE TAPA.png" alt="Tomatodo 600ml"></div>
+                    <div class="producto-info"><h3 class="producto-name">Tomatodo de Aluminio 600ml Blanco Doble Tapa</h3><p class="producto-desc">Doble tapa</p><span class="spec">✓ 600ml capacidad</span></div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-image"><img src="assets/individual-products/tomatodos/ALUMINIO 500 ML PLOMO DOBLE TAPA.png" alt="Tomatodo 500ml plomo"></div>
+                    <div class="producto-info"><h3 class="producto-name">Tomatodo de Aluminio 500ml Plomo Doble Tapa</h3><p class="producto-desc">Doble tapa</p><span class="spec">✓ 500ml capacidad</span></div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-image"><img src="assets/individual-products/tomatodos/ALUMINIO 500 ML BLANCO DOBLE TAPA.png" alt="Tomatodo 500ml blanco"></div>
+                    <div class="producto-info"><h3 class="producto-name">Tomatodo de Aluminio 500ml Blanco Doble Tapa</h3><p class="producto-desc">Doble tapa</p><span class="spec">✓ 500ml capacidad</span></div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-image"><span class="producto-badge">Térmico</span><img src="assets/individual-products/tomatodos/BOTELLA DE ALUMINIO TÉRMICO 500ML.png" alt="Botella térmica"></div>
+                    <div class="producto-info"><h3 class="producto-name">Botella de Aluminio Térmico 500ml</h3><p class="producto-desc">Mantiene temperatura</p><span class="spec">✓ Tecnología térmica</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Camisetas -->
+        <section class="category" id="camisetas">
+            <div class="category-header">
+                <h2 class="category-title">Camisetas</h2>
+                <p class="category-subtitle">Tu estilo, tu diseño</p>
+            </div>
+            <div class="productos-grid">
+                <div class="producto-card">
+                    <div class="producto-image"><div class="producto-placeholder"><i class="fas fa-tshirt"></i><span>Sin imagen aún</span></div></div>
+                    <div class="producto-info"><h3 class="producto-name">Camiseta blanca sublimada</h3><p class="producto-desc">100% algodón premium</p><span class="spec">✓ Algodón premium</span></div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-image"><div class="producto-placeholder"><i class="fas fa-tshirt"></i><span>Sin imagen aún</span></div></div>
+                    <div class="producto-info"><h3 class="producto-name">Camiseta técnica manga corta en DTF</h3><p class="producto-desc">Transpirable</p><span class="spec">✓ Especial DTF</span></div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-image"><img src="assets/individual-products/Camisetas-web/camiseta negra algodon dtf.png" alt="Camiseta algodón"></div>
+                    <div class="producto-info"><h3 class="producto-name">Camiseta de algodón manga corta en DTF</h3><p class="producto-desc">100% algodón</p><span class="spec">✓ DTF</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gorras -->
+        <section class="category" id="gorras">
+            <div class="category-header">
+                <h2 class="category-title">Gorras</h2>
+                <p class="category-subtitle">Estilo y protección</p>
+            </div>
+            <div class="productos-grid">
+                <div class="producto-card">
+                    <div class="producto-image"><img src="assets/individual-products/gorras-web/gorra sublimada.png" alt="Gorra"></div>
+                    <div class="producto-info"><h3 class="producto-name">Gorra sublimable</h3><p class="producto-desc">Superficie especial</p><span class="spec">✓ Sublimable</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mousepad -->
+        <section class="category" id="mousepad">
+            <div class="category-header">
+                <h2 class="category-title">Mousepad</h2>
+                <p class="category-subtitle">Comodidad para tu setup</p>
+            </div>
+            <div class="productos-grid">
+                <div class="producto-card">
+                    <div class="producto-image"><img src="assets/individual-products/mousepads web/mousepad rectangular.png" alt="Mousepad"></div>
+                    <div class="producto-info"><h3 class="producto-name">Mousepad rectangular 18 x 22 cm</h3><p class="producto-desc">18 x 22 cm</p><span class="spec">✓ Premium</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lámina de Aluminio -->
+        <section class="category" id="lamina">
+            <div class="category-header">
+                <h2 class="category-title">Lámina de Aluminio</h2>
+                <p class="category-subtitle">Decoración profesional</p>
+            </div>
+            <div class="productos-grid">
+                <div class="producto-card">
+                    <div class="producto-image"><img src="assets/individual-products/láminas aluminio web/lámina de aluminio.png" alt="Lámina"></div>
+                    <div class="producto-info"><h3 class="producto-name">Lámina de aluminio A4</h3><p class="producto-desc">Alta calidad</p><span class="spec">✓ Tamaño A4</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bolsos -->
+        <section class="category" id="bolsos">
+            <div class="category-header">
+                <h2 class="category-title">Bolsos</h2>
+                <p class="category-subtitle">Diseño funcional</p>
+            </div>
+            <div class="productos-grid">
+                <div class="producto-card">
+                    <div class="producto-image"><img src="assets/individual-products/bolsos/bolso con tirantes.png" alt="Bolso"></div>
+                    <div class="producto-info"><h3 class="producto-name">Bolsos con tirantes para hombros</h3><p class="producto-desc">Personalizable</p><span class="spec">✓ Tirantes</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reloj -->
+        <section class="category" id="reloj">
+            <div class="category-header">
+                <h2 class="category-title">Reloj</h2>
+                <p class="category-subtitle">Tiempo personalizados</p>
+            </div>
+            <div class="productos-grid">
+                <div class="producto-card">
+                    <div class="producto-image"><img src="assets/individual-products/relojes web/reloj alarma.png" alt="Reloj"></div>
+                    <div class="producto-info"><h3 class="producto-name">Reloj alarma</h3><p class="producto-desc">Personalizable</p><span class="spec">✓ Función de alarma</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portarretrato Reloj -->
+        <section class="category" id="portarretrato-reloj">
+            <div class="category-header">
+                <h2 class="category-title">Portarretrato Reloj</h2>
+                <p class="category-subtitle">Elegancia y funcionalidad</p>
+            </div>
+            <div class="productos-grid">
+                <div class="producto-card">
+                    <div class="producto-image"><img src="assets/individual-products/relojes web/portarretrato reloj.png" alt="Portarretrato"></div>
+                    <div class="producto-info"><h3 class="producto-name">Portarretrato reloj de vidrio blanco</h3><p class="producto-desc">Vidrio blanco</p><span class="spec">✓ Reloj integrado</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Libretas -->
+        <section class="category" id="libretas">
+            <div class="category-header">
+                <h2 class="category-title">Libretas</h2>
+                <p class="category-subtitle">Para tus ideas</p>
+            </div>
+            <div class="productos-grid">
+                <div class="producto-card">
+                    <div class="producto-image"><div class="producto-placeholder"><i class="fas fa-book"></i><span>Sin imagen aún</span></div></div>
+                    <div class="producto-info"><h3 class="producto-name">Libreta roja</h3><p class="producto-desc">Tamaño A5</p><span class="spec">✓ Tapa roja</span></div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-image"><img src="assets/individual-products/libretas web/libreta blanca.png" alt="Libreta"></div>
+                    <div class="producto-info"><h3 class="producto-name">Libreta blanca</h3><p class="producto-desc">Tamaño A5</p><span class="spec">✓ Tapa blanca</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Llaveros -->
+        <section class="category" id="llaveros">
+            <div class="category-header">
+                <h2 class="category-title">Llaveros</h2>
+                <p class="category-subtitle">Detalles únicos</p>
+            </div>
+            <div class="productos-grid">
+                <div class="producto-card">
+                    <div class="producto-image"><img src="assets/individual-products/llaveros web/llavero circular.png" alt="Llavero"></div>
+                    <div class="producto-info"><h3 class="producto-name">Llavero personalizado forma circular</h3><p class="producto-desc">Metal/Acrílico</p><span class="spec">✓ Forma circular</span></div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-image"><div class="producto-placeholder"><i class="fas fa-key"></i><span>Sin imagen aún</span></div></div>
+                    <div class="producto-info"><h3 class="producto-name">Llavero personalizado forma de casa</h3><p class="producto-desc">Ideal para inmobiliarias</p><span class="spec">✓ Forma única</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portarretrato Bambú -->
+        <section class="category" id="bambu">
+            <div class="category-header">
+                <h2 class="category-title">Portarretrato Bambú</h2>
+                <p class="category-subtitle">Toque ecológico</p>
+            </div>
+            <div class="productos-grid">
+                <div class="producto-card">
+                    <div class="producto-image"><img src="assets/individual-products/bambú web/bambú rombo.png" alt="Bambú rombo"></div>
+                    <div class="producto-info"><h3 class="producto-name">Portarretrato bambú rombo</h3><p class="producto-desc">Diseño único</p><span class="spec">✓ Forma rombo</span></div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-image"><img src="assets/individual-products/bambú web/bambú rectangular.png" alt="Bambú rectangular"></div>
+                    <div class="producto-info"><h3 class="producto-name">Portarretrato bambú rectangular</h3><p class="producto-desc">Clásico</p><span class="spec">✓ Forma rectangular</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Forro de Almohada -->
+        <section class="category" id="forro">
+            <div class="category-header">
+                <h2 class="category-title">Forro de Almohada</h2>
+                <p class="category-subtitle">Comodidad personalizada</p>
+            </div>
+            <div class="productos-grid">
+                <div class="producto-card">
+                    <div class="producto-image"><div class="producto-placeholder"><i class="fas fa-bed"></i><span>Sin imagen aún</span></div></div>
+                    <div class="producto-info"><h3 class="producto-name">Forro de almohada personalizado</h3><p class="producto-desc">Suave y cómodo</p><span class="spec">✓ Personalizable</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Platos -->
+        <section class="category" id="platos">
+            <div class="category-header">
+                <h2 class="category-title">Platos</h2>
+                <p class="category-subtitle">Decoración única</p>
+            </div>
+            <div class="productos-grid">
+                <div class="producto-card">
+                    <div class="producto-image"><img src="assets/individual-products/platos/plato sublimado.png" alt="Plato"></div>
+                    <div class="producto-info"><h3 class="producto-name">Plato sublimado personalizado</h3><p class="producto-desc">Cerámica</p><span class="spec">✓ Cerámica resistente</span></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-logo">SUBLIRIUM</div>
+        <p class="footer-slogan">El arte de regalar emociones</p>
+        <div class="footer-contact">
+            <span><i class="fas fa-phone"></i> <a href="tel:+593991075732">+593 99 107 5732</a></span>
+            <span><i class="fas fa-map-marker-alt"></i> Guayaquil, Ecuador</span>
+            <span><i class="fas fa-envelope"></i> <a href="mailto:subliriumrium@sublirium.com">subliriumrium@sublirium.com</a></span>
+        </div>
+        <div class="footer-social">
+            <a href="https://www.tiktok.com/@sublirium" target="_blank" class="social-link"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.instagram.com/subli_rium/" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="https://api.whatsapp.com/send/?phone=593991075732" target="_blank" class="social-link"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p class="copyright">&copy; 2026 SUBLIRIUM. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.querySelector('.theme-toggle-btn i');
+            if (body.getAttribute('data-theme') === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                btn.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.setAttribute('data-theme', 'light');
+                btn.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        
+        // Cargar tema guardado
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        if (savedTheme === 'light') {
+            document.body.setAttribute('data-theme', 'light');
+            document.querySelector('.theme-toggle-btn i').className = 'fas fa-sun';
+        }
+    </script>
+</body>
+</html>
