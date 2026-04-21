@@ -4,7 +4,13 @@ document.addEventListener('DOMContentLoaded', function() {
     initializePrices();
 });
 
+let pricesInitialized = false;
+
 function initializePrices() {
+    // Prevent multiple runs
+    if (pricesInitialized) return;
+    pricesInitialized = true;
+    
     // Find all product cards and add prices
     const productCards = document.querySelectorAll('.producto-card');
     productCards.forEach(card => {
@@ -35,10 +41,3 @@ function initializePrices() {
         }
     });
 }
-
-// Re-run on dynamic content changes
-const observer = new MutationObserver(() => {
-    initializePrices();
-});
-
-observer.observe(document.body, { childList: true, subtree: true });

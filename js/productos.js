@@ -195,48 +195,50 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Wishlist functionality
-    productCards.forEach(card => {
-        const wishlistBtn = document.createElement('button');
-        wishlistBtn.className = 'wishlist-btn';
-        wishlistBtn.innerHTML = '<i class="far fa-heart"></i>';
-        wishlistBtn.style.cssText = `
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            transition: var(--transition);
-            z-index: 3;
-        `;
-        
-        wishlistBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const icon = this.querySelector('i');
+    // Wishlist functionality - only run if wishlist button doesn't already exist
+    if (!document.querySelector('.wishlist-btn')) {
+        productCards.forEach(card => {
+            const wishlistBtn = document.createElement('button');
+            wishlistBtn.className = 'wishlist-btn';
+            wishlistBtn.innerHTML = '<i class="far fa-heart"></i>';
+            wishlistBtn.style.cssText = `
+                position: absolute;
+                top: 1rem;
+                left: 1rem;
+                background: rgba(255, 255, 255, 0.9);
+                border: none;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                cursor: pointer;
+                transition: var(--transition);
+                z-index: 3;
+            `;
             
-            if (icon.classList.contains('far')) {
-                icon.classList.remove('far');
-                icon.classList.add('fas');
-                this.style.color = '#e74c3c';
-                showNotification('Agregado a favoritos', 'success');
-            } else {
-                icon.classList.remove('fas');
-                icon.classList.add('far');
-                this.style.color = '';
-                showNotification('Removido de favoritos', 'info');
+            wishlistBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const icon = this.querySelector('i');
+                
+                if (icon.classList.contains('far')) {
+                    icon.classList.remove('far');
+                    icon.classList.add('fas');
+                    this.style.color = '#e74c3c';
+                    showNotification('Agregado a favoritos', 'success');
+                } else {
+                    icon.classList.remove('fas');
+                    icon.classList.add('far');
+                    this.style.color = '';
+                    showNotification('Removido de favoritos', 'info');
+                }
+            });
+            
+            const productImage = card.querySelector('.producto-image');
+            if (productImage) {
+                productImage.style.position = 'relative';
+                productImage.appendChild(wishlistBtn);
             }
         });
-        
-        const productImage = card.querySelector('.producto-image');
-        if (productImage) {
-            productImage.style.position = 'relative';
-            productImage.appendChild(wishlistBtn);
-        }
-    });
+    }
 });
 
 // Quick view modal functionality

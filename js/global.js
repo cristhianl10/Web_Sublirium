@@ -74,8 +74,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
 
-    // Observe elements for animation
-    document.querySelectorAll('.producto-item, .paso, .testimonio, .producto-card, .info-card').forEach(el => {
+    // Observe elements for animation (limited to first 20 for performance)
+    document.querySelectorAll('.producto-item, .paso, .testimonio, .producto-card, .info-card').forEach((el, index) => {
+        if (index > 20) return; // Limit observed elements
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';

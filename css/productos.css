@@ -30,7 +30,7 @@
 
 .producto-image {
     position: relative;
-    height: 420px; /* Taller rectangle: shows full image with adequate vertical space */
+    height: 220px;
     background: var(--color-light-gray);
     display: flex;
     align-items: center;
