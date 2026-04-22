@@ -162,8 +162,8 @@
 
 .productos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
 }
 
 .producto-item {
@@ -174,6 +174,8 @@
     transition: var(--transition);
     text-decoration: none;
     color: inherit;
+    max-width: 280px;
+    margin: 0 auto;
 }
 
 .producto-item:hover {
@@ -184,7 +186,7 @@
 
 .producto-image {
     position: relative;
-    height: 200px;
+    height: 160px;
     background: var(--gradient-primary);
     display: flex;
     align-items: center;
@@ -192,21 +194,14 @@
     overflow: hidden;
 }
 
-.producto-image .producto-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100;
-    height: 100%;
-    padding: 10px; /* Aplicar el padding aquí */
-}
-
 /* Agrandar solo las imágenes dentro del grid de productos (no el contenedor) */
 .productos .producto-image .producto-icon img,
 .productos .producto-image .product-item-img,
 .productos .producto-image .product-floating-image {
-    max-height: 85%;
-    max-width: 85%;
+    max-height: 90%;
+    max-width: 90%;
+    object-fit: contain;
+}
     width: auto;
     height: auto;
     object-fit: contain;
@@ -278,14 +273,15 @@
 }
 
 .producto-item h3 {
-    padding: 1.5rem 1.5rem 0.5rem;
-    font-size: 1.25rem;
+    padding: 1rem 1rem 0.25rem;
+    font-size: 1rem;
     font-weight: 600;
 }
 
 .producto-item p {
-    padding: 0 1.5rem 1.5rem;
+    padding: 0 1rem 1rem;
     color: var(--color-gray);
+    font-size: 0.9rem;
 }
 
 /* Cómo Funciona Section */
