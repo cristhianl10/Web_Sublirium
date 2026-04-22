@@ -198,15 +198,9 @@
 .productos .producto-image .producto-icon img,
 .productos .producto-image .product-item-img,
 .productos .producto-image .product-floating-image {
-    max-height: 90%;
-    max-width: 90%;
+    max-height: 80%;
+    max-width: 80%;
     object-fit: contain;
-}
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    display: block;
-    margin: 0 auto;
 }
 
 /* Ajuste específico para las miniaturas del tomatodo, mousepad y bolso si siguen pequeñas */
