@@ -164,6 +164,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1.5rem;
+    justify-items: center;
 }
 
 .producto-item {
@@ -174,8 +175,8 @@
     transition: var(--transition);
     text-decoration: none;
     color: inherit;
+    width: 100%;
     max-width: 280px;
-    margin: 0 auto;
 }
 
 .producto-item:hover {
@@ -187,63 +188,71 @@
 .producto-image {
     position: relative;
     height: 160px;
-    background: var(--gradient-primary);
+    background: var(--color-light-gray);
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 1rem;
     overflow: hidden;
 }
 
-/* Agrandar solo las imágenes dentro del grid de productos (no el contenedor) */
-.productos .producto-image .producto-icon img,
-.productos .producto-image .product-item-img,
-.productos .producto-image .product-floating-image {
-    max-height: 80%;
-    max-width: 80%;
-    object-fit: contain;
-}
-
-/* Ajuste específico para las miniaturas del tomatodo, mousepad y bolso si siguen pequeñas */
-.productos .producto-item[href$="tomatodos.html"] .producto-image .producto-icon img,
-.productos .producto-item[href$="mousepad.html"] .producto-image .producto-icon img,
-.productos .producto-item[href$="bolsos.html"] .producto-image .producto-icon img {
-    max-height: 92%;
-    max-width: 92%;
-}
-
-
-.producto-icon-laminaspiderman{
+.producto-icon {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
-    padding: 10px; /* Aplicar el padding aquí */
+    padding: 0.5rem;
+}
+
+/* Imágenes en el index - proporción correcta */
+.producto-icon img,
+.product-item-img,
+.product-floating-image {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Ajuste específico para produtos pequeños */
+.productos .producto-item[href$="tomatodos.html"] .producto-image .producto-icon img,
+.productos .producto-item[href$="mousepad.html"] .producto-image .producto-icon img,
+.productos .producto-item[href$="bolsos.html"] .producto-image .producto-icon img {
+    max-height: 85%;
+    max-width: 85%;
+}
+
+.producto-icon-laminaspiderman {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem;
 }
 
 /* Agrandar imagen de lámina de aluminio en index */
 .producto-icon-laminaspiderman .product-floating-image {
-    width: 180px;
-    height: 180px;
+    max-width: 90%;
+    max-height: 90%;
 }
 
-.producto-image .producto-icon-portarretrato-reloj{
+.producto-image .producto-icon-portarretrato-reloj {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
-    padding: 10px; /* Aplicar el padding aquí */
+    padding: 0.5rem;
 }
 
-/* Agrandar miniatura del portarretrato con reloj en index */
+/* Ajuste para portarretrato-reloj */
 .producto-icon-portarretrato-reloj .product-item-img,
 .producto-icon-portarretrato-reloj .portarretrato-thumb {
-    width: 500px;
-    height: 500px;
-    object-fit: contain;
-    display: block;
-    margin: 0 auto;
+    max-width: 85%;
+    max-height: 85%;
 }
 
 .producto-overlay {
