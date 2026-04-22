@@ -85,20 +85,39 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Dropdown menu functionality
     const dropdowns = document.querySelectorAll('.dropdown');
+    const isMobile = window.innerWidth <= 768;
+    
     dropdowns.forEach(dropdown => {
         const menu = dropdown.querySelector('.dropdown-menu');
         
-        dropdown.addEventListener('mouseenter', () => {
-            menu.style.opacity = '1';
-            menu.style.visibility = 'visible';
-            menu.style.transform = 'translateY(0)';
-        });
-        
-        dropdown.addEventListener('mouseleave', () => {
-            menu.style.opacity = '0';
-            menu.style.visibility = 'hidden';
-            menu.style.transform = 'translateY(-10px)';
-        });
+        if (isMobile) {
+            // Mobile: toggle on click
+            dropdown.addEventListener('click', (e) => {
+                e.preventDefault();
+                const isOpen = menu.style.opacity === '1';
+                // Close all other dropdowns
+                document.querySelectorAll('.dropdown-menu').forEach(m => {
+                    m.style.opacity = '0';
+                    m.style.visibility = 'hidden';
+                });
+                // Toggle current
+                menu.style.opacity = isOpen ? '0' : '1';
+                menu.style.visibility = isOpen ? 'hidden' : 'visible';
+            });
+        } else {
+            // Desktop: hover
+            dropdown.addEventListener('mouseenter', () => {
+                menu.style.opacity = '1';
+                menu.style.visibility = 'visible';
+                menu.style.transform = 'translateY(0)';
+            });
+            
+            dropdown.addEventListener('mouseleave', () => {
+                menu.style.opacity = '0';
+                menu.style.visibility = 'hidden';
+                menu.style.transform = 'translateY(-10px)';
+            });
+        }
     });
 
     // Update contact info globally - NUEVA INFORMACIÓN
