@@ -106,11 +106,11 @@
 
 /* Aumentar tamaño de imágenes en grid */
 .producto-image {
-    height: 280px;
+    height: 340px;
 }
 
 @media (max-width: 768px) {
     .producto-image {
-        height: 220px;
+        height: 280px;
     }
 }
