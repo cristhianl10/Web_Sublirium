@@ -188,12 +188,23 @@
 .producto-image {
     position: relative;
     height: 160px;
-    background: var(--color-light-gray);
+    background: var(--gradient-primary);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
+    padding: 0.75rem;
     overflow: hidden;
+}
+
+.producto-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.3) 0%, rgba(255, 0, 255, 0.3) 50%, rgba(255, 102, 0, 0.3) 100%);
+    z-index: 0;
 }
 
 .producto-icon {
@@ -203,6 +214,8 @@
     width: 100%;
     height: 100%;
     padding: 0.75rem;
+    position: relative;
+    z-index: 1;
 }
 
 /* Imágenes en el index - proporción correcta */
