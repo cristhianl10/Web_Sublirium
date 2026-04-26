@@ -1,147 +1,884 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo Sublirium - El arte de regalar emociones</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Parisienne&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Parisienne&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --gradient-brand: linear-gradient(135deg, #00D4FF 0%, #FF00FF 35%, #FF6600 65%, #FFFF00 100%);
             --bg-primary: #0a0a0a;
-            --bg-secondary: rgba(255,255,255,0.03);
-            --bg-card: rgba(255,255,255,0.02);
+            --bg-secondary: rgba(255, 255, 255, 0.03);
+            --bg-card: rgba(255, 255, 255, 0.02);
             --text-primary: #ffffff;
-            --text-secondary: rgba(255,255,255,0.7);
-            --text-muted: rgba(255,255,255,0.5);
-            --border-color: rgba(255,255,255,0.05);
-            --shadow-card: 0 20px 40px rgba(0,0,0,0.3);
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --text-muted: rgba(255, 255, 255, 0.5);
+            --border-color: rgba(255, 255, 255, 0.05);
+            --shadow-card: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
         [data-theme="light"] {
             --bg-primary: #f5f5f5;
-            --bg-secondary: rgba(0,0,0,0.03);
-            --bg-card: rgba(255,255,255,0.8);
+            --bg-secondary: rgba(0, 0, 0, 0.03);
+            --bg-card: rgba(255, 255, 255, 0.8);
             --text-primary: #1a1a1a;
-            --text-secondary: rgba(0,0,0,0.8);
-            --text-muted: rgba(0,0,0,0.5);
-            --border-color: rgba(0,0,0,0.1);
-            --shadow-card: 0 20px 40px rgba(0,0,0,0.1);
+            --text-secondary: rgba(0, 0, 0, 0.8);
+            --text-muted: rgba(0, 0, 0, 0.5);
+            --border-color: rgba(0, 0, 0, 0.1);
+            --shadow-card: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); overflow-x: hidden; transition: background 0.3s, color 0.3s; }
-        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
+        }
+
         /* Theme Toggle */
-        .theme-toggle { position: fixed; top: 1rem; right: 1rem; z-index: 1001; background: var(--bg-secondary); border: 1px solid var(--border-color); padding: 0.5rem; border-radius: 30px; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; }
-        .theme-toggle-btn { width: 36px; height: 36px; border-radius: 50%; border: none; background: var(--gradient-brand); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: transform 0.3s; }
-        .theme-toggle-btn:hover { transform: scale(1.1); }
-        
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1001;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .theme-toggle-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: var(--gradient-brand);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .theme-toggle-btn:hover {
+            transform: scale(1.1);
+        }
+
         /* Header */
-        .header { position: fixed; top: 0; width: 100%; background: var(--bg-primary); border-bottom: 1px solid var(--border-color); backdrop-filter: blur(20px); z-index: 1000; padding: 0.8rem 0; transition: background 0.3s; }
-        .header-content { max-width: 1400px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
-        .logo-main { font-family: 'Anton'; font-size: clamp(1.3rem, 4vw, 2rem); letter-spacing: 0.15em; background: var(--gradient-brand); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .logo-slogan { font-family: 'Parisienne'; font-size: clamp(0.7rem, 2vw, 0.9rem); color: var(--text-secondary); }
-        
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 0.8rem 0;
+            transition: background 0.3s;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-main {
+            font-family: 'Anton';
+            font-size: clamp(1.3rem, 4vw, 2rem);
+            letter-spacing: 0.15em;
+            background: var(--gradient-brand);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-slogan {
+            font-family: 'Parisienne';
+            font-size: clamp(0.7rem, 2vw, 0.9rem);
+            color: var(--text-secondary);
+        }
+
         /* Hero */
-        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 6rem 1.5rem 4rem; position: relative; }
-        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at 20% 80%, rgba(0, 212, 255, 0.15) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(255, 0, 255, 0.15) 0%, transparent 50%); pointer-events: none; }
-        .hero-content { position: relative; z-index: 1; }
-        .hero-logo { font-family: 'Anton'; font-size: clamp(3rem, 12vw, 10rem); letter-spacing: 0.15em; background: var(--gradient-brand); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem; }
-        .hero-slogan { font-family: 'Parisienne'; font-size: clamp(1.2rem, 3vw, 2.5rem); color: var(--text-secondary); margin-bottom: 1.5rem; }
-        .hero-description { font-size: clamp(0.9rem, 2vw, 1.1rem); color: var(--text-muted); max-width: 600px; margin: 0 auto; line-height: 1.8; }
-        .scroll-indicator { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: var(--text-muted); animation: bounce 2s infinite; }
-        @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(10px); } }
-        
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 1.5rem 4rem;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at 20% 80%, rgba(0, 212, 255, 0.15) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(255, 0, 255, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-logo {
+            font-family: 'Anton';
+            font-size: clamp(3rem, 12vw, 10rem);
+            letter-spacing: 0.15em;
+            background: var(--gradient-brand);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-slogan {
+            font-family: 'Parisienne';
+            font-size: clamp(1.2rem, 3vw, 2.5rem);
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-description {
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-muted);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(10px);
+            }
+        }
+
         /* Categorías */
-        .categories { padding: 3rem 1rem; max-width: 1400px; margin: 0 auto; }
-        .category { margin-bottom: 4rem; scroll-margin-top: 5.5rem; }
-        .category-header { text-align: center; margin-bottom: 2rem; }
-        .category-title { font-family: 'Anton'; font-size: clamp(1.5rem, 4vw, 3rem); letter-spacing: 0.1em; margin-bottom: 0.5rem; position: relative; display: inline-block; color: var(--text-primary); }
-        .category-title::after { content: ''; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); width: 50px; height: 3px; background: var(--gradient-brand); border-radius: 2px; }
-        .category-subtitle { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.8rem; }
-        
+        .categories {
+            padding: 3rem 1rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .category {
+            margin-bottom: 4rem;
+            scroll-margin-top: 5.5rem;
+        }
+
+        .category-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .category-title {
+            font-family: 'Anton';
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+            color: var(--text-primary);
+        }
+
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--gradient-brand);
+            border-radius: 2px;
+        }
+
+        .category-subtitle {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.8rem;
+        }
+
         /* Índice de categorías */
-        .catalog-index { max-width: 1400px; margin: 0 auto; padding: 0 1rem 2rem; display: flex; flex-wrap: wrap; gap: 0.45rem; justify-content: center; align-items: center; }
-        .catalog-index a { font-size: 0.72rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.4rem 0.65rem; border-radius: 999px; border: 1px solid var(--border-color); color: var(--text-secondary); text-decoration: none; background: var(--bg-secondary); transition: border-color 0.2s, color 0.2s; }
-        .catalog-index a:hover { border-color: rgba(0, 212, 255, 0.45); color: var(--text-primary); }
+        .catalog-index {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .catalog-index a {
+            font-size: 0.72rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            padding: 0.4rem 0.65rem;
+            border-radius: 999px;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            text-decoration: none;
+            background: var(--bg-secondary);
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .catalog-index a:hover {
+            border-color: rgba(0, 212, 255, 0.45);
+            color: var(--text-primary);
+        }
 
         /* Products Grid — uno al lado del otro */
-        .productos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 1.25rem; align-items: stretch; }
-        .producto-card { min-width: 0; width: 100%; background: var(--bg-secondary); border-radius: 14px; overflow: hidden; border: 1px solid var(--border-color); transition: all 0.3s; display: flex; flex-direction: column; }
-        .producto-card:hover { transform: translateY(-5px); border-color: rgba(0, 212, 255, 0.3); box-shadow: var(--shadow-card); }
-        .producto-image { width: 100%; height: 175px; display: flex; align-items: center; justify-content: center; padding: 0.85rem; background: var(--bg-card); position: relative; overflow: hidden; }
-        .producto-image img { width: auto; height: auto; max-width: 100%; max-height: 150px; object-fit: contain; }
-        .producto-card:hover .producto-image img { transform: scale(1.05); }
-        .producto-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--text-muted); gap: 0.4rem; }
-        .producto-placeholder i { font-size: 2.25rem; opacity: 0.5; }
-        .producto-placeholder span { font-size: 0.75rem; opacity: 0.5; }
-        .no-image { display: none; }
-        .producto-badge { position: absolute; top: 0.5rem; right: 0.5rem; padding: 0.2rem 0.5rem; background: var(--gradient-brand); border-radius: 10px; font-size: 0.62rem; font-weight: 600; color: #000; z-index: 5; }
-        .producto-info { padding: 0.95rem 0.9rem; flex: 1; display: flex; flex-direction: column; }
-        .producto-name { font-family: 'Anton'; font-size: 0.98rem; letter-spacing: 0.07em; margin-bottom: 0.25rem; color: var(--text-primary); line-height: 1.3; }
-        .producto-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.35; }
-        .spec { display: block; font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem; }
-        
+        .productos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+            gap: 1.25rem;
+            align-items: stretch;
+        }
+
+        .producto-card {
+            min-width: 0;
+            width: 100%;
+            background: var(--bg-secondary);
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .producto-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: var(--shadow-card);
+        }
+
+        .producto-image {
+            width: 100%;
+            height: 175px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.85rem;
+            background: var(--bg-card);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .producto-image img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 150px;
+            object-fit: contain;
+        }
+
+        .producto-card:hover .producto-image img {
+            transform: scale(1.05);
+        }
+
+        .producto-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            gap: 0.4rem;
+        }
+
+        .producto-placeholder i {
+            font-size: 2.25rem;
+            opacity: 0.5;
+        }
+
+        .producto-placeholder span {
+            font-size: 0.75rem;
+            opacity: 0.5;
+        }
+
+        .no-image {
+            display: none;
+        }
+
+        .producto-badge {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            padding: 0.2rem 0.5rem;
+            background: var(--gradient-brand);
+            border-radius: 10px;
+            font-size: 0.62rem;
+            font-weight: 600;
+            color: #000;
+            z-index: 5;
+        }
+
+        .producto-info {
+            padding: 0.95rem 0.9rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .producto-name {
+            font-family: 'Anton';
+            font-size: 0.98rem;
+            letter-spacing: 0.07em;
+            margin-bottom: 0.25rem;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .producto-desc {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            line-height: 1.35;
+        }
+
+        .spec {
+            display: block;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-top: 0.2rem;
+        }
+
         /* Footer */
-        .footer { background: var(--bg-secondary); padding: 3rem 1.5rem; text-align: center; border-top: 1px solid var(--border-color); }
-        .footer-logo { font-family: 'Anton'; font-size: clamp(1.5rem, 4vw, 2rem); letter-spacing: 0.15em; background: var(--gradient-brand); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .footer-slogan { font-family: 'Parisienne'; font-size: clamp(1rem, 2.5vw, 1.2rem); color: var(--text-secondary); margin: 0.5rem 0 1.5rem; }
-        .footer-contact { display: flex; justify-content: center; gap: clamp(1rem, 3vw, 2rem); flex-wrap: wrap; color: var(--text-secondary); font-size: 0.9rem; }
-        .footer-contact a { color: var(--text-secondary); text-decoration: none; }
-        .footer-contact a:hover { color: #00D4FF; }
-        .footer-social { display: flex; justify-content: center; gap: 0.8rem; margin-top: 1.5rem; }
-        .social-link { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; color: var(--text-primary); text-decoration: none; transition: all 0.3s; font-size: 0.9rem; }
-        .social-link:hover { background: var(--gradient-brand); border-color: transparent; color: #000; }
-        .copyright { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem; }
-        
+        .footer {
+            background: var(--bg-secondary);
+            padding: 3rem 1.5rem;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-logo {
+            font-family: 'Anton';
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            letter-spacing: 0.15em;
+            background: var(--gradient-brand);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-slogan {
+            font-family: 'Parisienne';
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: var(--text-secondary);
+            margin: 0.5rem 0 1.5rem;
+        }
+
+        .footer-contact {
+            display: flex;
+            justify-content: center;
+            gap: clamp(1rem, 3vw, 2rem);
+            flex-wrap: wrap;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .footer-contact a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .footer-contact a:hover {
+            color: #00D4FF;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .social-link:hover {
+            background: var(--gradient-brand);
+            border-color: transparent;
+            color: #000;
+        }
+
+        .copyright {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
         /* Responsive */
         @media (max-width: 1100px) {
-            .productos-grid { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
+            .productos-grid {
+                grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            }
         }
-        
+
         @media (max-width: 900px) {
-            .productos-grid { grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); }
+            .productos-grid {
+                grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+            }
         }
-        
+
         @media (max-width: 768px) {
-            .theme-toggle { top: 0.7rem; right: 0.7rem; padding: 0.4rem; }
-            .theme-toggle-btn { width: 32px; height: 32px; font-size: 0.9rem; }
-            .header-content { flex-direction: column; gap: 0.5rem; text-align: center; }
-            .logo-main { font-size: 1.5rem; }
-            .logo-slogan { font-size: 0.8rem; }
-            .hero { padding: 5rem 1rem 3rem; }
-            .hero-logo { font-size: clamp(2.5rem, 12vw, 5rem); }
-            .hero-slogan { font-size: 1.2rem; }
-            .hero-description { font-size: 0.9rem; }
-            .category { margin-bottom: 3rem; }
-            .category-title { font-size: 1.5rem; }
-            .productos-grid { grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 0.9rem; }
-            .producto-image { height: 140px; }
-            .producto-image img { max-height: 115px; }
-            .producto-info { padding: 0.75rem 0.65rem; }
-            .producto-name { font-size: 0.85rem; }
-            .producto-desc { font-size: 0.72rem; }
-            .producto-badge { font-size: 0.55rem; }
-            .footer { padding: 2rem 1rem; }
-            .footer-contact { flex-direction: column; gap: 0.8rem; }
+            .theme-toggle {
+                top: 0.7rem;
+                right: 0.7rem;
+                padding: 0.4rem;
+            }
+
+            .theme-toggle-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 0.9rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .logo-main {
+                font-size: 1.5rem;
+            }
+
+            .logo-slogan {
+                font-size: 0.8rem;
+            }
+
+            .hero {
+                padding: 5rem 1rem 3rem;
+            }
+
+            .hero-logo {
+                font-size: clamp(2.5rem, 12vw, 5rem);
+            }
+
+            .hero-slogan {
+                font-size: 1.2rem;
+            }
+
+            .hero-description {
+                font-size: 0.9rem;
+            }
+
+            .category {
+                margin-bottom: 3rem;
+            }
+
+            .category-title {
+                font-size: 1.5rem;
+            }
+
+            .productos-grid {
+                grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+                gap: 0.9rem;
+            }
+
+            .producto-image {
+                height: 140px;
+            }
+
+            .producto-image img {
+                max-height: 115px;
+            }
+
+            .producto-info {
+                padding: 0.75rem 0.65rem;
+            }
+
+            .producto-name {
+                font-size: 0.85rem;
+            }
+
+            .producto-desc {
+                font-size: 0.72rem;
+            }
+
+            .producto-badge {
+                font-size: 0.55rem;
+            }
+
+            .footer {
+                padding: 2rem 1rem;
+            }
+
+            .footer-contact {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
         }
-        
+
         @media (max-width: 500px) {
-            .productos-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
-            .producto-image { height: 120px; }
-            .producto-image img { max-height: 100px; }
-            .producto-name { font-size: 0.78rem; }
-            .producto-desc { font-size: 0.65rem; }
-            .spec { font-size: 0.6rem; }
-            .producto-placeholder i { font-size: 1.75rem; }
-            .producto-placeholder span { font-size: 0.68rem; }
+            .productos-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+
+            .producto-image {
+                height: 120px;
+            }
+
+            .producto-image img {
+                max-height: 100px;
+            }
+
+            .producto-name {
+                font-size: 0.78rem;
+            }
+
+            .producto-desc {
+                font-size: 0.65rem;
+            }
+
+            .spec {
+                font-size: 0.6rem;
+            }
+
+            .producto-placeholder i {
+                font-size: 1.75rem;
+            }
+
+            .producto-placeholder span {
+                font-size: 0.68rem;
+            }
+        }
+        }
+
+        /* Product Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            transform: translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-primary);
+            z-index: 10;
+            transition: all 0.3s;
+        }
+
+        .close-modal:hover {
+            background: var(--gradient-brand);
+            color: #000;
+            border-color: transparent;
+            transform: rotate(90deg);
+        }
+
+        .modal-product-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 2rem;
+            padding: 2.5rem;
+        }
+
+        .modal-product-image {
+            background: var(--bg-card);
+            border-radius: 18px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-product-image img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+        }
+
+        .modal-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--gradient-brand);
+            color: #000;
+            padding: 0.4rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .modal-product-title {
+            font-family: 'Anton';
+            font-size: 2.5rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            background: var(--gradient-brand);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .modal-product-description h3,
+        .modal-product-specs h3 {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .modal-product-description p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .specs-grid .spec {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 0.6rem 0.8rem;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .specs-grid .spec::before {
+            content: '✓';
+            color: #00D4FF;
+            font-weight: bold;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-add-to-cart-modal {
+            flex: 1;
+            min-width: 200px;
+            padding: 1rem;
+            border-radius: 14px;
+            border: none;
+            background: var(--gradient-brand);
+            color: #000;
+            font-family: 'Inter';
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .btn-add-to-cart-modal:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn-whatsapp-modal {
+            padding: 1rem;
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-family: 'Inter';
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .btn-whatsapp-modal:hover {
+            background: #25D366;
+            color: #fff;
+            border-color: transparent;
+            transform: translateY(-3px);
+        }
+
+        /* Loader */
+        #modal-loader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            gap: 1rem;
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--bg-secondary);
+            border-top: 3px solid #00D4FF;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 850px) {
+            .modal-product-container {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+            }
+
+            .modal-product-image {
+                padding: 1rem;
+            }
+
+            .modal-product-image img {
+                max-height: 250px;
+            }
+
+            .modal-product-title {
+                font-size: 1.8rem;
+            }
+
+            .modal-content {
+                border-radius: 0;
+                max-height: 100vh;
+                height: 100%;
+            }
+
+            .modal {
+                padding: 0;
+            }
         }
     </style>
 </head>
+
 <body>
     <!-- Theme Toggle -->
     <div class="theme-toggle">
@@ -163,7 +900,8 @@
         <div class="hero-content">
             <h1 class="hero-logo">SUBLIRIUM</h1>
             <p class="hero-slogan">El arte de regalar emociones</p>
-            <p class="hero-description">Descubre nuestra colección exclusive de productos personalizados. Cada pieza está diseñada para crear momentos únicos y memorables.</p>
+            <p class="hero-description">Descubre nuestra colección exclusive de productos personalizados. Cada pieza
+                está diseñada para crear momentos únicos y memorables.</p>
         </div>
         <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
     </section>
@@ -188,40 +926,109 @@
     </nav>
 
     <main class="categories">
-        <!-- Tazas / Jarros (igual que tazas-jarros.html) -->
+        <!-- Tazas / Jarros -->
         <section class="category" id="tazas">
             <div class="category-header">
                 <h2 class="category-title">Tazas / Jarros</h2>
                 <p class="category-subtitle">Para cada momento especial</p>
             </div>
             <div class="productos-grid">
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Jarro blanco 11 oz AAA"
+                    data-category="Tazas / Jarros"
+                    data-badge="Más Popular"
+                    data-img="assets/individual-products/tazas-jarros web/jarro blanco.png"
+                    data-desc="Jarro clásico blanco de cerámica premium AAA, ideal para sublimación. Superficie lisa y uniforme que garantiza colores vibrantes y duraderos."
+                    data-specs="11oz de capacidad|Cerámica AAA|Apto lavavajillas"
+                    data-entrega="2-3 días">
                     <div class="producto-image"><span class="producto-badge">Más Popular</span><img src="assets/individual-products/tazas-jarros web/jarro blanco.png" alt="Jarro blanco"></div>
-                    <div class="producto-info"><h3 class="producto-name">Jarro blanco 11 oz AAA</h3><p class="producto-desc">Cerámica premium AAA</p><span class="spec">✓ 11oz capacidad</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Jarro blanco 11 oz AAA</h3>
+                        <p class="producto-desc">Cerámica premium AAA</p><span class="spec">✓ 11oz capacidad</span>
+                    </div>
                 </div>
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Jarro negro 11 oz AAA"
+                    data-category="Tazas / Jarros"
+                    data-img="assets/individual-products/tazas-jarros web/jarro negro 11 oz no magico.png"
+                    data-desc="Jarro elegante negro de cerámica premium AAA. Perfecto para diseños que requieren contraste o efectos especiales con colores claros."
+                    data-specs="11oz de capacidad|Cerámica AAA|Acabado mate"
+                    data-entrega="2-3 días">
                     <div class="producto-image"><img src="assets/individual-products/tazas-jarros web/jarro negro 11 oz no magico.png" alt="Jarro negro"></div>
-                    <div class="producto-info"><h3 class="producto-name">Jarro negro 11 oz AAA</h3><p class="producto-desc">Acabado mate elegante</p><span class="spec">✓ 11oz capacidad</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Jarro negro 11 oz AAA</h3>
+                        <p class="producto-desc">Acabado mate elegante</p><span class="spec">✓ 11oz capacidad</span>
+                    </div>
                 </div>
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Jarro mágico negro"
+                    data-category="Tazas / Jarros"
+                    data-badge="¡Mágico!"
+                    data-img="assets/individual-products/tazas-jarros web/jarro negro.png"
+                    data-desc="Jarro que cambia de color con el calor. Cuando está frío se ve negro, al agregar líquido caliente revela tu diseño personalizado."
+                    data-specs="Cambia de color|Efecto sorpresa|11oz capacidad"
+                    data-entrega="2-3 días">
                     <div class="producto-image"><span class="producto-badge">Mágico</span><img src="assets/individual-products/tazas-jarros web/jarro negro.png" alt="Jarro mágico negro"></div>
-                    <div class="producto-info"><h3 class="producto-name">Jarro mágico negro</h3><p class="producto-desc">Cambia de color con el calor</p><span class="spec">✓ Efecto sorpresa</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Jarro mágico negro</h3>
+                        <p class="producto-desc">Cambia de color con el calor</p><span class="spec">✓ Efecto sorpresa</span>
+                    </div>
                 </div>
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Jarro mágico negro cóncavo con cuchara"
+                    data-category="Tazas / Jarros"
+                    data-badge="¡Completo!"
+                    data-img="assets/individual-products/tazas-jarros web/jarro mágico negro cóncavo.png"
+                    data-desc="Jarro mágico con diseño cóncavo único e incluye cuchara personalizable. Cambia de color con el calor para revelar tu diseño."
+                    data-specs="Incluye cuchara|Diseño cóncavo|Cambia de color"
+                    data-entrega="2-3 días">
                     <div class="producto-image"><img src="assets/individual-products/tazas-jarros web/jarro mágico negro cóncavo.png" alt="Jarro mágico cóncavo"></div>
-                    <div class="producto-info"><h3 class="producto-name">Jarro mágico negro cóncavo con cuchara</h3><p class="producto-desc">Cóncavo con cuchara</p><span class="spec">✓ Incluye cuchara</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Jarro mágico negro cóncavo con cuchara</h3>
+                        <p class="producto-desc">Cóncavo con cuchara</p><span class="spec">✓ Incluye cuchara</span>
+                    </div>
                 </div>
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Jarro mágico rojo"
+                    data-category="Tazas / Jarros"
+                    data-badge="¡Mágico!"
+                    data-img="assets/individual-products/tazas-jarros web/jarro mágico rojo.png"
+                    data-desc="Jarro que cambia de color rojo a tu diseño personalizado cuando se llena con líquido caliente. Efecto visual impactante."
+                    data-specs="Color base rojo|Cambia con calor|11oz capacidad"
+                    data-entrega="2-3 días">
                     <div class="producto-image"><img src="assets/individual-products/tazas-jarros web/jarro mágico rojo.png" alt="Jarro mágico rojo"></div>
-                    <div class="producto-info"><h3 class="producto-name">Jarro mágico rojo</h3><p class="producto-desc">Efecto visual impactante</p><span class="spec">✓ Color base rojo</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Jarro mágico rojo</h3>
+                        <p class="producto-desc">Efecto visual impactante</p><span class="spec">✓ Color base rojo</span>
+                    </div>
                 </div>
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Jarro mágico azul"
+                    data-category="Tazas / Jarros"
+                    data-badge="¡Mágico!"
+                    data-img="assets/individual-products/tazas-jarros web/Jarro mágico azul.png"
+                    data-desc="Jarro que cambia de color azul a tu diseño personalizado cuando se llena con líquido caliente. Perfecto para sorprender."
+                    data-specs="Color base azul|Cambia con calor|11oz capacidad"
+                    data-entrega="2-3 días">
                     <div class="producto-image"><img src="assets/individual-products/tazas-jarros web/Jarro mágico azul.png" alt="Jarro mágico azul"></div>
-                    <div class="producto-info"><h3 class="producto-name">Jarro mágico azul</h3><p class="producto-desc">Perfecto para sorprender</p><span class="spec">✓ Color base azul</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Jarro mágico azul</h3>
+                        <p class="producto-desc">Perfecto para sorprender</p><span class="spec">✓ Color base azul</span>
+                    </div>
                 </div>
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Tazas coloridas"
+                    data-category="Tazas / Jarros"
+                    data-badge="Variedad"
+                    data-img="assets/individual-products/tazas-jarros web/taza colorida.png"
+                    data-desc="Colección de tazas con interior y mango de colores vibrantes. Disponibles en múltiples colores para combinar con tu diseño."
+                    data-specs="Múltiples colores|Interior colorido|11oz capacidad"
+                    data-entrega="2-3 días">
                     <div class="producto-image"><img src="assets/individual-products/tazas-jarros web/taza colorida.png" alt="Tazas coloridas"></div>
-                    <div class="producto-info"><h3 class="producto-name">Tazas coloridas</h3><p class="producto-desc">Múltiples colores</p><span class="spec">✓ Interior colorful</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Tazas coloridas</h3>
+                        <p class="producto-desc">Múltiples colores</p><span class="spec">✓ Interior colorful</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -233,17 +1040,47 @@
                 <p class="category-subtitle">Mantén tu bebida perfecta</p>
             </div>
             <div class="productos-grid">
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Termo blanco de aluminio 350ml"
+                    data-category="Termos"
+                    data-badge="350ml"
+                    data-img="assets/individual-products/termos web/termo Renata.png"
+                    data-desc="Termo compacto de aluminio blanco, perfecto para llevar contigo. Mantiene la temperatura por horas y es ideal para sublimación."
+                    data-specs="350ml capacidad|Aluminio premium|Mantiene temperatura"
+                    data-entrega="3-4 días">
                     <div class="producto-image"><img src="assets/individual-products/termos web/termo Renata.png" alt="Termo 350ml"></div>
-                    <div class="producto-info"><h3 class="producto-name">Termo blanco de aluminio 350ml</h3><p class="producto-desc">Compacto y práctico</p><span class="spec">✓ 350ml capacidad</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Termo blanco de aluminio 350ml</h3>
+                        <p class="producto-desc">Compacto y práctico</p><span class="spec">✓ 350ml capacidad</span>
+                    </div>
                 </div>
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Termo degradado azul con sensor térmico"
+                    data-category="Termos"
+                    data-badge="Sensor Térmico"
+                    data-img="assets/individual-products/termos web/termo azul degradado.png"
+                    data-desc="Termo innovador con efecto degradado azul y sensor térmico que cambia de color según la temperatura del líquido. Mantiene la temperatura perfecta por horas."
+                    data-specs="Sensor térmico|Degradado azul|Tecnología avanzada"
+                    data-entrega="3-4 días">
                     <div class="producto-image"><img src="assets/individual-products/termos web/termo azul degradado.png" alt="Termo azul"></div>
-                    <div class="producto-info"><h3 class="producto-name">Termo degradado azul con sensor térmico</h3><p class="producto-desc">Con sensor térmico</p><span class="spec">✓ Sensor térmico</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Termo degradado azul con sensor térmico</h3>
+                        <p class="producto-desc">Con sensor térmico</p><span class="spec">✓ Sensor térmico</span>
+                    </div>
                 </div>
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Termo degradado rosa con sensor térmico"
+                    data-category="Termos"
+                    data-badge="Sensor Térmico"
+                    data-img="assets/individual-products/termos web/termo rosa degradado.png"
+                    data-desc="Termo con hermoso efecto degradado rosa y sensor térmico inteligente. Combina estilo y funcionalidad tecnológica con excelente retención térmica."
+                    data-specs="Sensor térmico|Degradado rosa|Diseño elegante"
+                    data-entrega="3-4 días">
                     <div class="producto-image"><img src="assets/individual-products/termos web/termo rosa degradado.png" alt="Termo rosa"></div>
-                    <div class="producto-info"><h3 class="producto-name">Termo degradado rosa con sensor térmico</h3><p class="producto-desc">Con sensor térmico</p><span class="spec">✓ Sensor térmico</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Termo degradado rosa con sensor térmico</h3>
+                        <p class="producto-desc">Con sensor térmico</p><span class="spec">✓ Sensor térmico</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -255,13 +1092,33 @@
                 <p class="category-subtitle">Diseño y funcionalidad</p>
             </div>
             <div class="productos-grid">
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Vaso térmico de aluminio blanco degradado"
+                    data-category="Vasos Térmicos"
+                    data-badge="Degradado"
+                    data-img="assets/individual-products/vaso tumbler web/vaso tumbler degradado.png"
+                    data-desc="Vaso térmico con efecto degradado único. El diseño degradado crea un efecto visual atractivo que se combina perfectamente con tu personalización."
+                    data-specs="Efecto degradado|Aluminio premium|Diseño único"
+                    data-entrega="3-4 días">
                     <div class="producto-image"><span class="producto-badge">Degradado</span><img src="assets/individual-products/vaso tumbler web/vaso tumbler degradado.png" alt="Vaso degradado"></div>
-                    <div class="producto-info"><h3 class="producto-name">Vaso térmico de aluminio blanco degradado</h3><p class="producto-desc">Efecto visual atractivo</p><span class="spec">✓ Efecto degradado</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Vaso térmico de aluminio blanco degradado</h3>
+                        <p class="producto-desc">Efecto visual atractivo</p><span class="spec">✓ Efecto degradado</span>
+                    </div>
                 </div>
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Vaso térmico de aluminio blanco"
+                    data-category="Vasos Térmicos"
+                    data-badge="Clásico"
+                    data-img="assets/individual-products/vaso tumbler web/vaso tumbler blanco.png"
+                    data-desc="Vaso térmico clásico de aluminio blanco. Superficie lisa y uniforme, ideal para cualquier tipo de diseño personalizado. Mantiene la temperatura perfecta."
+                    data-specs="Diseño clásico|Superficie lisa|Térmico eficiente"
+                    data-entrega="3-4 días">
                     <div class="producto-image"><span class="producto-badge">Clásico</span><img src="assets/individual-products/vaso tumbler web/vaso tumbler blanco.png" alt="Vaso blanco"></div>
-                    <div class="producto-info"><h3 class="producto-name">Vaso térmico de aluminio blanco</h3><p class="producto-desc">Diseño clásico</p><span class="spec">✓ Superficie lisa</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Vaso térmico de aluminio blanco</h3>
+                        <p class="producto-desc">Diseño clásico</p><span class="spec">✓ Superficie lisa</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -273,33 +1130,103 @@
                 <p class="category-subtitle">Hidratación deportiva</p>
             </div>
             <div class="productos-grid">
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Tomatodo de Aluminio 750ml Blanco Doble Tapa"
+                    data-category="Tomatodos"
+                    data-badge="750ml"
+                    data-img="assets/individual-products/tomatodos/ALUMINIO 750ML BLANCO DOBLE TAPA.png"
+                    data-desc="Tomatodo de aluminio blanco de gran capacidad con sistema de doble tapa. Perfecto para deportistas profesionales y uso diario intensivo."
+                    data-specs="750ml capacidad|Doble tapa|Color blanco"
+                    data-entrega="3-4 días">
                     <div class="producto-image"><img src="assets/individual-products/tomatodos/ALUMINIO 750ML BLANCO DOBLE TAPA.png" alt="Tomatodo 750ml"></div>
-                    <div class="producto-info"><h3 class="producto-name">Tomatodo de Aluminio 750ml Blanco Doble Tapa</h3><p class="producto-desc">Doble tapa</p><span class="spec">✓ 750ml capacidad</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Tomatodo de Aluminio 750ml Blanco Doble Tapa</h3>
+                        <p class="producto-desc">Doble tapa</p><span class="spec">✓ 750ml capacidad</span>
+                    </div>
                 </div>
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Tomatodo de Aluminio 750ml Plomo Doble Tapa"
+                    data-category="Tomatodos"
+                    data-badge="750ml"
+                    data-img="assets/individual-products/tomatodos/ALUMINIO 750 ML PLOMO DOBLE TAPA.png"
+                    data-desc="Tomatodo de aluminio color plomo de gran capacidad con sistema de doble tapa. Acabado elegante y resistente para uso intensivo."
+                    data-specs="750ml capacidad|Doble tapa|Color plomo"
+                    data-entrega="3-4 días">
                     <div class="producto-image"><img src="assets/individual-products/tomatodos/ALUMINIO 750 ML PLOMO DOBLE TAPA.png" alt="Tomatodo plomo"></div>
-                    <div class="producto-info"><h3 class="producto-name">Tomatodo de Aluminio 750ml Plomo Doble Tapa</h3><p class="producto-desc">Doble tapa</p><span class="spec">✓ 750ml capacidad</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Tomatodo de Aluminio 750ml Plomo Doble Tapa</h3>
+                        <p class="producto-desc">Doble tapa</p><span class="spec">✓ 750ml capacidad</span>
+                    </div>
                 </div>
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Tomatodo de Aluminio 750ml Blanco Deportivo"
+                    data-category="Tomatodos"
+                    data-badge="Deportivo"
+                    data-img="assets/individual-products/tomatodos/ALUMINIO 750ML BLANCO DEPORTIVO.png"
+                    data-desc="Tomatodo deportivo de aluminio blanco diseñado para actividades físicas. Diseño ergonómico con fácil apertura y cierre."
+                    data-specs="750ml capacidad|Diseño deportivo|Ergonomía"
+                    data-entrega="3-4 días">
                     <div class="producto-image"><img src="assets/individual-products/tomatodos/ALUMINIO 750ML BLANCO DEPORTIVO.png" alt="Tomatodo deportivo"></div>
-                    <div class="producto-info"><h3 class="producto-name">Tomatodo de Aluminio 750ml Blanco Deportivo</h3><p class="producto-desc">Diseño ergonómico</p><span class="spec">✓ 750ml capacidad</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Tomatodo de Aluminio 750ml Blanco Deportivo</h3>
+                        <p class="producto-desc">Diseño ergonómico</p><span class="spec">✓ 750ml capacidad</span>
+                    </div>
                 </div>
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Tomatodo de Aluminio 600ml Blanco Doble Tapa"
+                    data-category="Tomatodos"
+                    data-badge="600ml"
+                    data-img="assets/individual-products/tomatodos/ALUMINIO 600 ML BLANCO DOBLE TAPA.png"
+                    data-desc="Tomatodo de aluminio blanco de tamaño medio con sistema de doble tapa. Equilibrio perfecto entre capacidad y portabilidad."
+                    data-specs="600ml capacidad|Doble tapa|Portabilidad"
+                    data-entrega="3-4 días">
                     <div class="producto-image"><img src="assets/individual-products/tomatodos/ALUMINIO 600 ML BLANCO DOBLE TAPA.png" alt="Tomatodo 600ml"></div>
-                    <div class="producto-info"><h3 class="producto-name">Tomatodo de Aluminio 600ml Blanco Doble Tapa</h3><p class="producto-desc">Doble tapa</p><span class="spec">✓ 600ml capacidad</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Tomatodo de Aluminio 600ml Blanco Doble Tapa</h3>
+                        <p class="producto-desc">Doble tapa</p><span class="spec">✓ 600ml capacidad</span>
+                    </div>
                 </div>
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Tomatodo de Aluminio 500ml Plomo Doble Tapa"
+                    data-category="Tomatodos"
+                    data-badge="500ml"
+                    data-img="assets/individual-products/tomatodos/ALUMINIO 500 ML PLOMO DOBLE TAPA.png"
+                    data-desc="Tomatodo de aluminio color plomo compacto con sistema de doble tapa. Ideal para actividades cortas y uso urbano."
+                    data-specs="500ml capacidad|Doble tapa|Color plomo"
+                    data-entrega="3-4 días">
                     <div class="producto-image"><img src="assets/individual-products/tomatodos/ALUMINIO 500 ML PLOMO DOBLE TAPA.png" alt="Tomatodo 500ml plomo"></div>
-                    <div class="producto-info"><h3 class="producto-name">Tomatodo de Aluminio 500ml Plomo Doble Tapa</h3><p class="producto-desc">Doble tapa</p><span class="spec">✓ 500ml capacidad</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Tomatodo de Aluminio 500ml Plomo Doble Tapa</h3>
+                        <p class="producto-desc">Doble tapa</p><span class="spec">✓ 500ml capacidad</span>
+                    </div>
                 </div>
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Tomatodo de Aluminio 500ml Blanco Doble Tapa"
+                    data-category="Tomatodos"
+                    data-badge="500ml"
+                    data-img="assets/individual-products/tomatodos/ALUMINIO 500 ML BLANCO DOBLE TAPA.png"
+                    data-desc="Tomatodo de aluminio blanco compacto con sistema de doble tapa. Perfecto para llevar al gimnasio o la oficina."
+                    data-specs="500ml capacidad|Doble tapa|Compacto"
+                    data-entrega="3-4 días">
                     <div class="producto-image"><img src="assets/individual-products/tomatodos/ALUMINIO 500 ML BLANCO DOBLE TAPA.png" alt="Tomatodo 500ml blanco"></div>
-                    <div class="producto-info"><h3 class="producto-name">Tomatodo de Aluminio 500ml Blanco Doble Tapa</h3><p class="producto-desc">Doble tapa</p><span class="spec">✓ 500ml capacidad</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Tomatodo de Aluminio 500ml Blanco Doble Tapa</h3>
+                        <p class="producto-desc">Doble tapa</p><span class="spec">✓ 500ml capacidad</span>
+                    </div>
                 </div>
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Botella de Aluminio Térmico 500ml"
+                    data-category="Tomatodos"
+                    data-badge="Térmico"
+                    data-img="assets/individual-products/tomatodos/BOTELLA DE ALUMINIO TÉRMICO 500ML.png"
+                    data-desc="Botella de aluminio con tecnología térmica que mantiene la temperatura de tus bebidas. Ideal para mantener bebidas frías o calientes por horas."
+                    data-specs="500ml capacidad|Tecnología térmica|Mantiene temperatura"
+                    data-entrega="3-4 días">
                     <div class="producto-image"><span class="producto-badge">Térmico</span><img src="assets/individual-products/tomatodos/BOTELLA DE ALUMINIO TÉRMICO 500ML.png" alt="Botella térmica"></div>
-                    <div class="producto-info"><h3 class="producto-name">Botella de Aluminio Térmico 500ml</h3><p class="producto-desc">Mantiene temperatura</p><span class="spec">✓ Tecnología térmica</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Botella de Aluminio Térmico 500ml</h3>
+                        <p class="producto-desc">Mantiene temperatura</p><span class="spec">✓ Tecnología térmica</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -311,13 +1238,37 @@
                 <p class="category-subtitle">Tu estilo, tu diseño</p>
             </div>
             <div class="productos-grid">
-                <div class="producto-card">
-                    <div class="producto-image"><div class="producto-placeholder"><i class="fas fa-tshirt"></i><span>Imagen pendiente</span></div></div>
-                    <div class="producto-info"><h3 class="producto-name">Camiseta blanca sublimada</h3><p class="producto-desc">100% algodón premium</p><span class="spec">✓ Algodón premium</span></div>
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Camiseta blanca sublimada"
+                    data-category="Camisetas"
+                    data-badge="Más Popular"
+                    data-img=""
+                    data-desc="Camiseta blanca de algodón 100% premium, especialmente tratada para sublimación. Ofrece colores vibrantes y diseños duraderos que no se desvanecen con el tiempo."
+                    data-specs="100% Algodón premium|Tratada para sublimación|Colores vibrantes|Resistente al lavado"
+                    data-tallas="XS|S|M|L|XL|XXL"
+                    data-entrega="3-4 días">
+                    <div class="producto-image">
+                        <div class="producto-placeholder"><i class="fas fa-tshirt"></i><span>Imagen pendiente</span></div>
+                    </div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Camiseta blanca sublimada</h3>
+                        <p class="producto-desc">100% algodón premium</p><span class="spec">✓ Algodón premium</span>
+                    </div>
                 </div>
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Camiseta de algodón manga corta en DTF"
+                    data-category="Camisetas"
+                    data-badge="DTF"
+                    data-img="assets/individual-products/Camisetas-web/camiseta negra algodon dtf.png"
+                    data-desc="Camiseta de manga corta ideal para lucirla en todo momento. Estampado en DTF que garantiza resistencia y full color en tu diseño."
+                    data-specs="Diseño claro y colorido|Especial para DTF|Cómoda y fresca|Diseño a elección"
+                    data-tallas="XS|S|M|L|XL|XXL"
+                    data-entrega="3-4 días">
                     <div class="producto-image"><img src="assets/individual-products/Camisetas-web/camiseta negra algodon dtf.png" alt="Camiseta algodón"></div>
-                    <div class="producto-info"><h3 class="producto-name">Camiseta de algodón manga corta en DTF</h3><p class="producto-desc">100% algodón</p><span class="spec">✓ DTF</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Camiseta de algodón manga corta en DTF</h3>
+                        <p class="producto-desc">100% algodón</p><span class="spec">✓ DTF</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -329,9 +1280,19 @@
                 <p class="category-subtitle">Estilo y protección</p>
             </div>
             <div class="productos-grid">
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Gorra sublimable"
+                    data-category="Gorras"
+                    data-badge="Sublimable"
+                    data-img="assets/individual-products/gorras-web/gorra sublimada.png"
+                    data-desc="Gorra de alta calidad con superficie especialmente tratada para sublimación. Diseño clásico con visera curva y cierre ajustable. Ideal para logos, diseños promocionales y personalización completa."
+                    data-specs="Superficie sublimable|Talla ajustable|Visera curva|Cierre de velcro|Resistente al sol"
+                    data-entrega="3-4 días">
                     <div class="producto-image"><img src="assets/individual-products/gorras-web/gorra sublimada.png" alt="Gorra"></div>
-                    <div class="producto-info"><h3 class="producto-name">Gorra sublimable</h3><p class="producto-desc">Superficie especial</p><span class="spec">✓ Sublimable</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Gorra sublimable</h3>
+                        <p class="producto-desc">Superficie especial</p><span class="spec">✓ Sublimable</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -343,13 +1304,35 @@
                 <p class="category-subtitle">Comodidad para tu setup</p>
             </div>
             <div class="productos-grid">
-                <div class="producto-card">
-                    <div class="producto-image"><div class="producto-placeholder"><i class="fas fa-heart"></i><span>Imagen pendiente</span></div></div>
-                    <div class="producto-info"><h3 class="producto-name">Mousepad de corazón</h3><p class="producto-desc">Forma de corazón</p><span class="spec">✓ Premium</span></div>
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Mousepad de corazón"
+                    data-category="Mousepad"
+                    data-badge="Corazón"
+                    data-img="assets/individual-products/mousepads web/mousepad corazón.png"
+                    data-desc="Mousepad en forma de corazón, perfecto para regalos románticos y detalles especiales. Superficie suave y base antideslizante."
+                    data-specs="Forma de corazón|Superficie suave|Base antideslizante|Ideal para regalos"
+                    data-entrega="2-3 días">
+                    <div class="producto-image">
+                        <div class="producto-placeholder"><i class="fas fa-heart"></i><span>Imagen pendiente</span></div>
+                    </div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Mousepad de corazón</h3>
+                        <p class="producto-desc">Forma de corazón</p><span class="spec">✓ Premium</span>
+                    </div>
                 </div>
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Mousepad rectangular 18 x 22 cm"
+                    data-category="Mousepad"
+                    data-badge="18 x 22 cm"
+                    data-img="assets/individual-products/mousepads web/mousepad rectangular.png"
+                    data-desc="Mousepad de tamaño estándar con superficie de tela suave y base de goma antideslizante. Ideal para sublimación con colores vibrantes y diseños detallados. Perfecto para gaming, trabajo y uso diario."
+                    data-specs="18 x 22 cm (tamaño estándar)|Superficie de tela suave|Base antideslizante|Bordes reforzados|Resistente al desgaste|Fácil limpieza"
+                    data-entrega="2-3 días">
                     <div class="producto-image"><img src="assets/individual-products/mousepads web/mousepad rectangular.png" alt="Mousepad"></div>
-                    <div class="producto-info"><h3 class="producto-name">Mousepad rectangular 18 x 22 cm</h3><p class="producto-desc">18 x 22 cm</p><span class="spec">✓ Premium</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Mousepad rectangular 18 x 22 cm</h3>
+                        <p class="producto-desc">18 x 22 cm</p><span class="spec">✓ Premium</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -361,9 +1344,19 @@
                 <p class="category-subtitle">Decoración profesional</p>
             </div>
             <div class="productos-grid">
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Lámina de aluminio A4"
+                    data-category="Lámina de Aluminio"
+                    data-badge="A4"
+                    data-img="assets/individual-products/láminas aluminio web/lámina de aluminio.png"
+                    data-desc="Lámina de aluminio de alta calidad en formato A4, especialmente tratada para sublimación. Superficie lisa y brillante que garantiza colores vibrantes y acabado profesional. Ideal para placas, señalética y decoración."
+                    data-specs="Tamaño A4 (21 x 29.7 cm)|Aluminio de alta calidad|Superficie sublimable|Acabado brillante|Resistente a la corrosión|Bordes lisos y seguros"
+                    data-entrega="2-3 días">
                     <div class="producto-image"><img src="assets/individual-products/láminas aluminio web/lámina de aluminio.png" alt="Lámina"></div>
-                    <div class="producto-info"><h3 class="producto-name">Lámina de aluminio A4</h3><p class="producto-desc">Alta calidad</p><span class="spec">✓ Tamaño A4</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Lámina de aluminio A4</h3>
+                        <p class="producto-desc">Alta calidad</p><span class="spec">✓ Tamaño A4</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -375,13 +1368,35 @@
                 <p class="category-subtitle">Diseño funcional</p>
             </div>
             <div class="productos-grid">
-                <div class="producto-card">
-                    <div class="producto-image"><div class="producto-placeholder"><i class="fas fa-leaf"></i><span>Imagen pendiente</span></div></div>
-                    <div class="producto-info"><h3 class="producto-name">Bolso ecológico</h3><p class="producto-desc">Material reciclable</p><span class="spec">✓ Eco-friendly</span></div>
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Bolso ecológico"
+                    data-category="Bolsos"
+                    data-badge="Ecológico"
+                    data-img=""
+                    data-desc="Bolso fabricado con material reciclable y biodegradable. Cómodo, resistente y amigable con el medio ambiente. Perfecto para promociones eco-friendly."
+                    data-specs="Material reciclable|Biodegradable|Resistente|Eco-friendly"
+                    data-entrega="4-5 días">
+                    <div class="producto-image">
+                        <div class="producto-placeholder"><i class="fas fa-leaf"></i><span>Imagen pendiente</span></div>
+                    </div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Bolso ecológico</h3>
+                        <p class="producto-desc">Material reciclable</p><span class="spec">✓ Eco-friendly</span>
+                    </div>
                 </div>
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Bolsos con tirantes para hombros"
+                    data-category="Bolsos"
+                    data-badge="Tirantes"
+                    data-img="assets/individual-products/bolsos/bolso con tirantes.png"
+                    data-desc="Bolsos versátiles con tirantes ajustables para hombros. Fabricados en material resistente y duradero, con superficie especialmente tratada para sublimación. Perfectos para uso diario, escolar, deportivo y promocional."
+                    data-specs="Tirantes ajustables|Material resistente|Superficie sublimable|Múltiples compartimentos|Cierre con cremallera|Costuras reforzadas"
+                    data-entrega="4-5 días">
                     <div class="producto-image"><img src="assets/individual-products/bolsos/bolso con tirantes.png" alt="Bolso"></div>
-                    <div class="producto-info"><h3 class="producto-name">Bolsos con tirantes para hombros</h3><p class="producto-desc">Personalizable</p><span class="spec">✓ Tirantes</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Bolsos con tirantes para hombros</h3>
+                        <p class="producto-desc">Personalizable</p><span class="spec">✓ Tirantes</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -393,9 +1408,19 @@
                 <p class="category-subtitle">Tiempo personalizados</p>
             </div>
             <div class="productos-grid">
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Reloj alarma"
+                    data-category="Relojes"
+                    data-badge="Novedad"
+                    data-img="assets/individual-products/relojes web/reloj alarma.png"
+                    data-desc="Reloj de escritorio con función de alarma, completamente personalizable con la imagen que desees. Ideal para empezar el día con tu estilo."
+                    data-specs="Función de alarma|Diseño compacto|Personalización total"
+                    data-entrega="2-3 días">
                     <div class="producto-image"><img src="assets/individual-products/relojes web/reloj alarma.png" alt="Reloj"></div>
-                    <div class="producto-info"><h3 class="producto-name">Reloj alarma</h3><p class="producto-desc">Personalizable</p><span class="spec">✓ Función de alarma</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Reloj alarma</h3>
+                        <p class="producto-desc">Personalizable</p><span class="spec">✓ Función de alarma</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -407,9 +1432,19 @@
                 <p class="category-subtitle">Elegancia y funcionalidad</p>
             </div>
             <div class="productos-grid">
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Portarretrato reloj de vidrio blanco"
+                    data-category="Portarretrato Reloj"
+                    data-badge="Elegante"
+                    data-img="assets/individual-products/relojes web/portarretrato reloj.png"
+                    data-desc="Portarretrato de vidrio blanco con reloj incorporado, perfecto para sublimar tus fotos más preciadas. Un toque de elegancia y funcionalidad."
+                    data-specs="Vidrio resistente|Reloj integrado|Impresión de alta definición|Tamaño 20x25cm"
+                    data-entrega="2-3 días">
                     <div class="producto-image"><img src="assets/individual-products/relojes web/portarretrato reloj.png" alt="Portarretrato"></div>
-                    <div class="producto-info"><h3 class="producto-name">Portarretrato reloj de vidrio blanco</h3><p class="producto-desc">Vidrio blanco</p><span class="spec">✓ Reloj integrado</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Portarretrato reloj de vidrio blanco</h3>
+                        <p class="producto-desc">Vidrio blanco</p><span class="spec">✓ Reloj integrado</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -421,13 +1456,35 @@
                 <p class="category-subtitle">Para tus ideas</p>
             </div>
             <div class="productos-grid">
-                <div class="producto-card">
-                    <div class="producto-image"><div class="producto-placeholder"><i class="fas fa-book"></i><span>Sin imagen aún</span></div></div>
-                    <div class="producto-info"><h3 class="producto-name">Libreta roja</h3><p class="producto-desc">Tamaño A5</p><span class="spec">✓ Tapa roja</span></div>
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Libreta roja"
+                    data-category="Libretas"
+                    data-badge="Roja"
+                    data-img=""
+                    data-desc="Libreta de tamaño A5 con tapa roja, personalizable ideal para plasmar tus ideas o como obsequio empresarial. Hojas de alta calidad para una escritura fluida."
+                    data-specs="Tamaño A5|Tapa roja personalizable|Hojas rayadas/blancas"
+                    data-entrega="2-3 días">
+                    <div class="producto-image">
+                        <div class="producto-placeholder"><i class="fas fa-book"></i><span>Sin imagen aún</span></div>
+                    </div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Libreta roja</h3>
+                        <p class="producto-desc">Tamaño A5</p><span class="spec">✓ Tapa roja</span>
+                    </div>
                 </div>
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Libreta blanca"
+                    data-category="Libretas"
+                    data-badge="Blanca"
+                    data-img="assets/individual-products/libretas web/libreta blanca.png"
+                    data-desc="Libreta de tamaño A5 con tapa blanca, personalizable ideal para plasmar tus ideas o como obsequio empresarial. Hojas de alta calidad para una escritura fluida."
+                    data-specs="Tamaño A5|Tapa blanca personalizable|Hojas rayadas/blancas"
+                    data-entrega="2-3 días">
                     <div class="producto-image"><img src="assets/individual-products/libretas web/libreta blanca.png" alt="Libreta"></div>
-                    <div class="producto-info"><h3 class="producto-name">Libreta blanca</h3><p class="producto-desc">Tamaño A5</p><span class="spec">✓ Tapa blanca</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Libreta blanca</h3>
+                        <p class="producto-desc">Tamaño A5</p><span class="spec">✓ Tapa blanca</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -439,13 +1496,35 @@
                 <p class="category-subtitle">Detalles únicos</p>
             </div>
             <div class="productos-grid">
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Llavero personalizado forma circular"
+                    data-category="Llaveros"
+                    data-badge="Clásico"
+                    data-img="assets/individual-products/llaveros web/llavero circular.png"
+                    data-desc="Llavero circular de metal o acrílico, personalizable con tu logo, foto o diseño favorito. Resistente y duradero."
+                    data-specs="Forma circular|Metal/acrílico|Impresión a doble cara"
+                    data-entrega="2-3 días">
                     <div class="producto-image"><img src="assets/individual-products/llaveros web/llavero circular.png" alt="Llavero"></div>
-                    <div class="producto-info"><h3 class="producto-name">Llavero personalizado forma circular</h3><p class="producto-desc">Metal/Acrílico</p><span class="spec">✓ Forma circular</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Llavero personalizado forma circular</h3>
+                        <p class="producto-desc">Metal/Acrílico</p><span class="spec">✓ Forma circular</span>
+                    </div>
                 </div>
-                <div class="producto-card">
-                    <div class="producto-image"><div class="producto-placeholder"><i class="fas fa-key"></i><span>Sin imagen aún</span></div></div>
-                    <div class="producto-info"><h3 class="producto-name">Llavero personalizado forma de casa</h3><p class="producto-desc">Ideal para inmobiliarias</p><span class="spec">✓ Forma única</span></div>
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Llavero personalizado forma de casa"
+                    data-category="Llaveros"
+                    data-badge="Original"
+                    data-img=""
+                    data-desc="Llavero con forma de casa, ideal para agencias inmobiliarias o regalos de inauguración. Personaliza con tu logo o un mensaje especial."
+                    data-specs="Forma única|Material resistente|Ideal para inmobiliarias"
+                    data-entrega="2-3 días">
+                    <div class="producto-image">
+                        <div class="producto-placeholder"><i class="fas fa-key"></i><span>Sin imagen aún</span></div>
+                    </div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Llavero personalizado forma de casa</h3>
+                        <p class="producto-desc">Ideal para inmobiliarias</p><span class="spec">✓ Forma única</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -457,13 +1536,33 @@
                 <p class="category-subtitle">Toque ecológico</p>
             </div>
             <div class="productos-grid">
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Portarretrato bambú rombo"
+                    data-category="Portarretrato Bambú"
+                    data-badge="Diseño Único"
+                    data-img="assets/individual-products/bambú web/bambú rombo.png"
+                    data-desc="Portarretrato de bambú con forma de rombo, ideal para fotos especiales. Personalízalo con un grabado sublimado para un toque distintivo."
+                    data-specs="Forma de rombo|Bambú natural|Grabado en sublimado"
+                    data-entrega="2-3 días">
                     <div class="producto-image"><img src="assets/individual-products/bambú web/bambú rombo.png" alt="Bambú rombo"></div>
-                    <div class="producto-info"><h3 class="producto-name">Portarretrato bambú rombo</h3><p class="producto-desc">Diseño único</p><span class="spec">✓ Forma rombo</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Portarretrato bambú rombo</h3>
+                        <p class="producto-desc">Diseño único</p><span class="spec">✓ Forma rombo</span>
+                    </div>
                 </div>
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Portarretrato bambú rectangular"
+                    data-category="Portarretrato Bambú"
+                    data-badge="Clásico"
+                    data-img="assets/individual-products/bambú web/bambú rectangular.png"
+                    data-desc="Portarretrato de bambú rectangular, un clásico para exhibir tus fotos. Personalízalo con nombres, fechas o diseños grabados."
+                    data-specs="Forma rectangular|Bambú natural|Grabado en sublimado"
+                    data-entrega="2-3 días">
                     <div class="producto-image"><img src="assets/individual-products/bambú web/bambú rectangular.png" alt="Bambú rectangular"></div>
-                    <div class="producto-info"><h3 class="producto-name">Portarretrato bambú rectangular</h3><p class="producto-desc">Clásico</p><span class="spec">✓ Forma rectangular</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Portarretrato bambú rectangular</h3>
+                        <p class="producto-desc">Clásico</p><span class="spec">✓ Forma rectangular</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -475,9 +1574,21 @@
                 <p class="category-subtitle">Comodidad personalizada</p>
             </div>
             <div class="productos-grid">
-                <div class="producto-card">
-                    <div class="producto-image"><div class="producto-placeholder"><i class="fas fa-bed"></i><span>Sin imagen aún</span></div></div>
-                    <div class="producto-info"><h3 class="producto-name">Forro de almohada personalizado</h3><p class="producto-desc">Suave y cómodo</p><span class="spec">✓ Personalizable</span></div>
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Forro de almohada personalizado"
+                    data-category="Forro de Almohada"
+                    data-badge="Confort"
+                    data-img=""
+                    data-desc="Forro de almohada de tela suave, ideal para sublimar tus diseños. Dale un toque personal a tu habitación o sala de estar."
+                    data-specs="Tejido suave|Impresión duradera|Fácil de lavar|Tamaño 40x40cm"
+                    data-entrega="2-3 días">
+                    <div class="producto-image">
+                        <div class="producto-placeholder"><i class="fas fa-bed"></i><span>Sin imagen aún</span></div>
+                    </div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Forro de almohada personalizado</h3>
+                        <p class="producto-desc">Suave y cómodo</p><span class="spec">✓ Personalizable</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -489,13 +1600,373 @@
                 <p class="category-subtitle">Decoración única</p>
             </div>
             <div class="productos-grid">
-                <div class="producto-card">
+                <div class="producto-card" role="button" tabindex="0"
+                    data-name="Plato sublimado personalizado"
+                    data-category="Platos"
+                    data-badge="Decorativo"
+                    data-img="assets/individual-products/platos/plato sublimado.png"
+                    data-desc="Plato de cerámica de alta calidad, perfecto para sublimar tus diseños, fotos o logos. Ideal para decoración o como un regalo original."
+                    data-specs="Cerámica resistente|Impresión duradera|Uso decorativo"
+                    data-entrega="2-3 días">
                     <div class="producto-image"><img src="assets/individual-products/platos/plato sublimado.png" alt="Plato"></div>
-                    <div class="producto-info"><h3 class="producto-name">Plato sublimado personalizado</h3><p class="producto-desc">Cerámica</p><span class="spec">✓ Cerámica resistente</span></div>
+                    <div class="producto-info">
+                        <h3 class="producto-name">Plato sublimado personalizado</h3>
+                        <p class="producto-desc">Cerámica</p><span class="spec">✓ Cerámica resistente</span>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
+
+    <!-- ===== MODAL DE PRODUCTO ===== -->
+    <div class="prod-modal" id="prodModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="prod-modal__overlay" id="modalOverlay"></div>
+        <div class="prod-modal__box">
+            <button class="prod-modal__close" id="modalClose" aria-label="Cerrar">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="prod-modal__inner">
+                <!-- Columna imagen -->
+                <div class="prod-modal__img-col">
+                    <div class="prod-modal__img-wrap">
+                        <span class="prod-modal__badge" id="modalBadge"></span>
+                        <img id="modalImg" src="" alt="" />
+                        <div class="prod-modal__img-placeholder" id="modalImgPlaceholder">
+                            <i class="fas fa-image"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Columna info -->
+                <div class="prod-modal__info-col">
+                    <p class="prod-modal__category" id="modalCategory"></p>
+                    <h2 class="prod-modal__title" id="modalTitle"></h2>
+                    <p class="prod-modal__desc" id="modalDesc"></p>
+                    <div class="prod-modal__specs-wrap">
+                        <p class="prod-modal__specs-label">Características</p>
+                        <div class="prod-modal__specs" id="modalSpecs"></div>
+                    </div>
+                    <div class="prod-modal__tallas-wrap" id="modalTallasWrap" style="display:none">
+                        <p class="prod-modal__specs-label">Tallas disponibles</p>
+                        <div class="prod-modal__tallas" id="modalTallas"></div>
+                    </div>
+                    <div class="prod-modal__meta">
+                        <span class="prod-modal__entrega"><i class="fas fa-truck"></i> Entrega: <strong id="modalEntrega"></strong></span>
+                    </div>
+                    <div class="prod-modal__actions">
+                        <a id="modalWhatsapp" href="#" target="_blank" rel="noopener noreferrer" class="prod-modal__btn prod-modal__btn--wa">
+                            <i class="fab fa-whatsapp"></i> Consultar por WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* ===== MODAL STYLES ===== */
+        .prod-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .prod-modal.is-open {
+            visibility: visible;
+            opacity: 1;
+        }
+        .prod-modal__overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(8px);
+            cursor: pointer;
+        }
+        .prod-modal__box {
+            position: relative;
+            z-index: 1;
+            background: var(--bg-primary);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 860px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+            transform: translateY(24px) scale(0.97);
+            transition: transform 0.35s cubic-bezier(0.165,0.84,0.44,1);
+        }
+        .prod-modal.is-open .prod-modal__box {
+            transform: translateY(0) scale(1);
+        }
+        .prod-modal__close {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.2rem;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.05);
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: all 0.25s;
+            z-index: 10;
+        }
+        .prod-modal__close:hover {
+            background: var(--gradient-brand);
+            color: #000;
+            border-color: transparent;
+            transform: rotate(90deg);
+        }
+        .prod-modal__inner {
+            display: grid;
+            grid-template-columns: 1fr 1.15fr;
+            gap: 0;
+        }
+        /* Image column */
+        .prod-modal__img-col {
+            padding: 2.5rem 1.5rem 2.5rem 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .prod-modal__img-wrap {
+            position: relative;
+            width: 100%;
+            background: rgba(255,255,255,0.03);
+            border-radius: 18px;
+            border: 1px solid rgba(255,255,255,0.06);
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 280px;
+        }
+        .prod-modal__img-wrap img {
+            max-width: 100%;
+            max-height: 320px;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 24px rgba(0,0,0,0.3));
+        }
+        .prod-modal__img-placeholder {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.2);
+            font-size: 4rem;
+            width: 100%;
+            min-height: 200px;
+        }
+        .prod-modal__badge {
+            position: absolute;
+            top: 0.8rem;
+            left: 0.8rem;
+            background: var(--gradient-brand);
+            color: #000;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.3rem 0.7rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: none;
+        }
+        .prod-modal__badge.visible { display: inline-block; }
+        /* Info column */
+        .prod-modal__info-col {
+            padding: 2.5rem 2.5rem 2.5rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            border-left: 1px solid rgba(255,255,255,0.05);
+        }
+        .prod-modal__category {
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            background: var(--gradient-brand);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+            margin: 0;
+        }
+        .prod-modal__title {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            letter-spacing: 0.05em;
+            color: var(--text-primary);
+            line-height: 1.15;
+            margin: 0;
+        }
+        .prod-modal__desc {
+            font-size: 0.95rem;
+            line-height: 1.65;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .prod-modal__specs-label {
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin: 0 0 0.6rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .prod-modal__specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .prod-modal__spec-tag {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 0.4rem 0.75rem;
+            font-size: 0.82rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .prod-modal__spec-tag::before {
+            content: '✓';
+            background: var(--gradient-brand);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+        .prod-modal__tallas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+        .prod-modal__talla-tag {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
+            padding: 0.3rem 0.65rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+        .prod-modal__meta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .prod-modal__entrega {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .prod-modal__entrega i {
+            background: var(--gradient-brand);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .prod-modal__entrega strong {
+            color: var(--text-secondary);
+        }
+        .prod-modal__actions {
+            margin-top: auto;
+            padding-top: 0.5rem;
+        }
+        .prod-modal__btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 0.9rem 1.5rem;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.25s;
+            text-decoration: none;
+            width: 100%;
+            border: none;
+        }
+        .prod-modal__btn--wa {
+            background: #25D366;
+            color: #fff;
+        }
+        .prod-modal__btn--wa:hover {
+            background: #1ebe5d;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37,211,102,0.35);
+        }
+        /* Cursor pointer on cards */
+        .producto-card[role="button"] {
+            cursor: pointer;
+        }
+        /* Responsive modal */
+        @media (max-width: 700px) {
+            .prod-modal__inner {
+                grid-template-columns: 1fr;
+            }
+            .prod-modal__img-col {
+                padding: 1.5rem 1.5rem 0.5rem;
+            }
+            .prod-modal__info-col {
+                padding: 1rem 1.5rem 1.5rem;
+                border-left: none;
+                border-top: 1px solid rgba(255,255,255,0.05);
+            }
+            .prod-modal__box {
+                border-radius: 18px;
+                max-height: 95vh;
+            }
+            .prod-modal {
+                padding: 0.5rem;
+            }
+        }
+        /* Light theme adjustments */
+        [data-theme="light"] .prod-modal__box {
+            background: #fff;
+            border-color: rgba(0,0,0,0.08);
+        }
+        [data-theme="light"] .prod-modal__img-wrap {
+            background: rgba(0,0,0,0.02);
+            border-color: rgba(0,0,0,0.06);
+        }
+        [data-theme="light"] .prod-modal__info-col {
+            border-left-color: rgba(0,0,0,0.06);
+        }
+        [data-theme="light"] .prod-modal__spec-tag {
+            background: rgba(0,0,0,0.03);
+            border-color: rgba(0,0,0,0.08);
+        }
+        [data-theme="light"] .prod-modal__talla-tag {
+            background: rgba(0,0,0,0.03);
+            border-color: rgba(0,0,0,0.1);
+        }
+        [data-theme="light"] .prod-modal__close {
+            border-color: rgba(0,0,0,0.1);
+            background: rgba(0,0,0,0.04);
+            color: #1a1a1a;
+        }
+        [data-theme="light"] .prod-modal__specs-label {
+            border-bottom-color: rgba(0,0,0,0.06);
+        }
+    </style>
 
     <footer class="footer">
         <div class="footer-logo">SUBLIRIUM</div>
@@ -503,12 +1974,16 @@
         <div class="footer-contact">
             <span><i class="fas fa-phone"></i> <a href="tel:+593991075732">+593 99 107 5732</a></span>
             <span><i class="fas fa-map-marker-alt"></i> Guayaquil, Ecuador</span>
-            <span><i class="fas fa-envelope"></i> <a href="mailto:subliriumrium@sublirium.com">subliriumrium@sublirium.com</a></span>
+            <span><i class="fas fa-envelope"></i> <a
+                    href="mailto:subliriumrium@sublirium.com">subliriumrium@sublirium.com</a></span>
         </div>
         <div class="footer-social">
-            <a href="https://www.tiktok.com/@sublirium" target="_blank" class="social-link"><i class="fab fa-tiktok"></i></a>
-            <a href="https://www.instagram.com/subli_rium/" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
-            <a href="https://api.whatsapp.com/send/?phone=593991075732" target="_blank" class="social-link"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.tiktok.com/@sublirium" target="_blank" class="social-link"><i
+                    class="fab fa-tiktok"></i></a>
+            <a href="https://www.instagram.com/subli_rium/" target="_blank" class="social-link"><i
+                    class="fab fa-instagram"></i></a>
+            <a href="https://api.whatsapp.com/send/?phone=593991075732" target="_blank" class="social-link"><i
+                    class="fab fa-whatsapp"></i></a>
         </div>
         <p class="copyright">&copy; 2026 SUBLIRIUM. Todos los derechos reservados.</p>
     </footer>
@@ -527,13 +2002,122 @@
                 localStorage.setItem('theme', 'light');
             }
         }
-        
+
         // Cargar tema guardado
         const savedTheme = localStorage.getItem('theme') || 'dark';
         if (savedTheme === 'light') {
             document.body.setAttribute('data-theme', 'light');
             document.querySelector('.theme-toggle-btn i').className = 'fas fa-sun';
         }
+
+        // ===== PRODUCT MODAL LOGIC =====
+        (function () {
+            const modal    = document.getElementById('prodModal');
+            const overlay  = document.getElementById('modalOverlay');
+            const closeBtn = document.getElementById('modalClose');
+            const imgEl    = document.getElementById('modalImg');
+            const imgPH    = document.getElementById('modalImgPlaceholder');
+            const badgeEl  = document.getElementById('modalBadge');
+            const catEl    = document.getElementById('modalCategory');
+            const titleEl  = document.getElementById('modalTitle');
+            const descEl   = document.getElementById('modalDesc');
+            const specsEl  = document.getElementById('modalSpecs');
+            const tallasWrap = document.getElementById('modalTallasWrap');
+            const tallasEl = document.getElementById('modalTallas');
+            const entregaEl = document.getElementById('modalEntrega');
+            const waBtn    = document.getElementById('modalWhatsapp');
+
+            function openModal(card) {
+                const name     = card.dataset.name     || '';
+                const category = card.dataset.category || '';
+                const badge    = card.dataset.badge    || '';
+                const img      = card.dataset.img      || '';
+                const desc     = card.dataset.desc     || '';
+                const specs    = card.dataset.specs    || '';
+                const tallas   = card.dataset.tallas   || '';
+                const entrega  = card.dataset.entrega  || '';
+
+                // Badge
+                if (badge) {
+                    badgeEl.textContent = badge;
+                    badgeEl.classList.add('visible');
+                } else {
+                    badgeEl.classList.remove('visible');
+                }
+
+                // Image
+                if (img) {
+                    imgEl.src = img;
+                    imgEl.alt = name;
+                    imgEl.style.display = 'block';
+                    imgPH.style.display = 'none';
+                } else {
+                    imgEl.style.display = 'none';
+                    imgPH.style.display = 'flex';
+                }
+
+                catEl.textContent   = category;
+                titleEl.textContent = name;
+                descEl.textContent  = desc;
+                entregaEl.textContent = entrega;
+
+                // Specs
+                specsEl.innerHTML = '';
+                if (specs) {
+                    specs.split('|').forEach(function (s) {
+                        const tag = document.createElement('span');
+                        tag.className = 'prod-modal__spec-tag';
+                        tag.textContent = s.trim();
+                        specsEl.appendChild(tag);
+                    });
+                }
+
+                // Tallas
+                if (tallas) {
+                    tallasEl.innerHTML = '';
+                    tallas.split('|').forEach(function (t) {
+                        const tag = document.createElement('span');
+                        tag.className = 'prod-modal__talla-tag';
+                        tag.textContent = t.trim();
+                        tallasEl.appendChild(tag);
+                    });
+                    tallasWrap.style.display = 'block';
+                } else {
+                    tallasWrap.style.display = 'none';
+                }
+
+                // WhatsApp link
+                const waMsg = encodeURIComponent('Hola, me interesa el producto: ' + name);
+                waBtn.href = 'https://api.whatsapp.com/send/?phone=593991075732&text=' + waMsg + '&type=phone_number&app_absent=0';
+
+                modal.classList.add('is-open');
+                document.body.style.overflow = 'hidden';
+                closeBtn.focus();
+            }
+
+            function closeModal() {
+                modal.classList.remove('is-open');
+                document.body.style.overflow = '';
+            }
+
+            // Attach click to all product cards with data-name
+            document.querySelectorAll('.producto-card[data-name]').forEach(function (card) {
+                card.addEventListener('click', function () { openModal(card); });
+                card.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openModal(card);
+                    }
+                });
+            });
+
+            overlay.addEventListener('click', closeModal);
+            closeBtn.addEventListener('click', closeModal);
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') closeModal();
+            });
+        })();
     </script>
 </body>
+
 </html>
